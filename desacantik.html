@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Desa Wukirsari</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-text">
+                <h1>Website Desa Wukirsari</h1>
+                <p>Portal Informasi Resmi</p>
+            </div>
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Bar for Date and Time -->
+    <div class="top-bar">
+        <!-- Logo Section Kiri -->
+        <div class="logo-section">
+            <div class="logo-item">
+                <img src="asset/logo_PemkalWukirsari.png" alt="Logo Pemerintah Kalurahan Wukirsari">
+            </div>
+            <div class="logo-item">
+                <img src="asset/logo_DesaCantik.png" alt="Logo Desa Cantik">
+            </div>
+        </div>
+        
+        <!-- DateTime Section Kanan -->
+        <div class="datetime-display">
+            <div class="datetime-info">
+                <span class="date" id="currentDate">Thu, Sep 18th, 2025</span>
+                <span class="time" id="currentTime">10:18:46 AM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WEBSITE DESA</h1>
+            <h2>WUKIRSARI</h2>
+            <p>Portal informasi resmi Desa Wukirsari. Temukan berbagai layanan, informasi, dan berita terkini tentang desa kami.</p>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Layanan & Informasi</h2>
+            <div class="menu-grid">
+                <!-- Card 1: Sekretariat -->
+                <div class="menu-card">
+                    <img src="asset/sekretariat.png" alt="Sekretariat">
+                    <div class="card-content">
+                        <h3 class="card-title">SEKRETARIAT</h3>
+                        <p class="card-description">Informasi administrasi dan pelayanan sekretariat desa</p>
+                        <button class="card-button" onclick="openModal('sekretariat')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tata Laksana -->
+                <div class="menu-card">
+                    <img src ="asset/tata laksana.png" alt="Tata Laksana">
+                    <div class="card-content">
+                        <h3 class="card-title">TATA LAKSANA</h3>
+                        <p class="card-description">Prosedur dan tata cara pelayanan di desa</p>
+                        <button class="card-button" onclick="openModal('tatalaksana')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Profil Desa -->
+                <div class="menu-card">
+                    <img src="asset/danarta.png" alt="Danarta">
+                    <div class="card-content">
+                        <h3 class="card-title">DANARTA</h3>
+                        <p class="card-description">Membantu carik dalam urusan pelayanan administrasi</p>
+                        <button class="card-button" onclick="openModal('danarta')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 4: Pemerintahan -->
+                <div class="menu-card">
+                    <img src="asset/pangripta.png" alt="Pangripta">
+                    <div class="card-content">
+                        <h3 class="card-title">PANGRIPTA</h3>
+                        <p class="card-description">Struktur organisasi dan perangkat desa</p>
+                        <button class="card-button" onclick="openModal('pangripta')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 5: Keuangan -->
+                <div class="menu-card">
+                    <img src="asset/jagabaya.png" alt="Jagabaya">
+                    <div class="card-content">
+                        <h3 class="card-title">JAGABAYA</h3>
+                        <p class="card-description">Menjaga keamanan kalurahan</p>
+                        <button class="card-button" onclick="openModal('jagabaya')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 6: Program -->
+                <div class="menu-card">
+                    <img src="asset/ulu ulu.png" alt="Ulu Ulu">
+                    <div class="card-content">
+                        <h3 class="card-title">ULU ULU</h3>
+                        <p class="card-description">Program pembangunan dan pemberdayaan masyarakat</p>
+                        <button class="card-button" onclick="openModal('uluulu')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 7: Berita -->
+                <div class="menu-card">
+                    <img src="asset/kamituwa.png" alt="Kamituwa">
+                    <div class="card-content">
+                        <h3 class="card-title">KAMITUWA</h3>
+                        <p class="card-description">Informasi kegiatan kemasyarakatan desa</p>
+                        <button class="card-button" onclick="openModal('kamituwa')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 8: Kontak -->
+                <div class="menu-card">
+                    <img src="asset/ppid.png" alt="PPID">
+                    <div class="card-content">
+                        <h3 class="card-title">PPID (Pejabat Pengelola Informasi & Dokumentasi)</h3>
+                        <p class="card-description">Informasi kontak dan lokasi kantor desa</p>
+                        <button class="card-button" onclick="openModal('ppid')">
+                            <span>Lihat Detail</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-header">
+                <h2 class="footer-title">Website Desa Wukirsari</h2>
+                <p class="footer-subtitle">Portal Informasi Resmi Desa Wukirsari</p>
+            </div>
+            
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3 class="footer-section-title">SEKRETARIAT</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item"><a href="https://docs.google.com/spreadsheets/d/1fgwTnO3BAc7NJZTLFUJb_rXPXZRZVTTYDv2-WA3r_K4/edit?gid=0#gid=0" target="_blank">Surat Masuk</a></li>
+                        <li class="footer-menu-item"><a href="https://docs.google.com/spreadsheets/d/1PyEK15hUXySAfg71lEdTLbX4X5UvHRTOkXIQv-jGl9Y/edit?gid=0#gid=0" target="_blank">Surat Keluar</a></li>
+                        <li class="footer-menu-item"><a href="https://docs.google.com/spreadsheets/d/1aEtD4f3aWmnArxQBlhTpR0NYYxrvkxw2rDhaX8uy2kc/edit?gid=0#gid=0" target="_blank">Undangan Masuk</a></li>
+                        <li class="footer-menu-item"><a href="https://docs.google.com/spreadsheets/d/1_l4veMaYIGuPvOvHMIKW8QPeI8cjqS2PwsRJ_-7VpBI/edit?gid=0#gid=0" target="_blank">Undangan Keluar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">TATA LAKSANA</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">Profil Kependudukan Bulanan</li>
+                        <li class="footer-menu-item">Jumlah Layanan</li>
+                        <li class="footer-menu-item"><a href="https://drive.google.com/file/d/1r66qRwn5jHppVvJcLZaeKnV--YOoJit6/view" target="_blank">Analisis Data Kependudukan</a></li>
+                        <li class="footer-menu-item"><a href="https://docs.google.com/spreadsheets/d/16wlgmE-P1wMRsHhqG2aFGKNcC6VB_CRV1kzpxxYsJCw/edit?gid=0#gid=0" target="_blank">Penggunaan Ruangan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">DANARTA</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">Registrasi Pencarian SPP</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">PANGRIPTA</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">RPJM</li>
+                        <li class="footer-menu-item">Profil Kelurahan</li>
+                        <li class="footer-menu-item"><a href="https://drive.google.com/file/d/1zKQln1sTnIlplpRSos88Zb1K-0LPRG5S/view" target="_blank">Publikasi Potensi Kalurahan Wukirsari</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">JAGABAYA</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">APBDes</li>
+                        <li class="footer-menu-item">Laporan Keuangan</li>
+                        <li class="footer-menu-item">Realisasi Anggaran</li>
+                        <li class="footer-menu-item">Transparansi Dana</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">ULU ULU</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">Program Unggulan</li>
+                        <li class="footer-menu-item">Pemberdayaan Masyarakat</li>
+                        <li class="footer-menu-item">Infrastruktur</li>
+                        <li class="footer-menu-item">Program Sosial</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">KAMITUWA</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">Profil Kebudayaan</li>
+                        <li class="footer-menu-item">Daftar</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-section-title">PPID</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item">Alamat Kantor</li>
+                        <li class="footer-menu-item">Nomor Telepon</li>
+                        <li class="footer-menu-item">Email Resmi</li>
+                        <li class="footer-menu-item">Media Sosial</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p><span class="footer-logo">Desa Wukirsari</span> - Portal Informasi Resmi</p>
+                <p>© 2025 Website Desa Wukirsari. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-menu-list" id="modalMenuList">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalData = {
+            sekretariat: {
+                title: 'SEKRETARIAT',
+                description: 'Informasi administrasi dan pelayanan sekretariat desa',
+                menu: [
+                    {
+                        name: 'Surat Masuk',
+                        url: 'https://docs.google.com/spreadsheets/d/1fgwTnO3BAc7NJZTLFUJb_rXPXZRZVTTYDv2-WA3r_K4/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'Surat Keluar',
+                        url: 'https://docs.google.com/spreadsheets/d/1PyEK15hUXySAfg71lEdTLbX4X5UvHRTOkXIQv-jGl9Y/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'Undangan Masuk',
+                        url: 'https://docs.google.com/spreadsheets/d/1aEtD4f3aWmnArxQBlhTpR0NYYxrvkxw2rDhaX8uy2kc/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'Undangan Keluar',
+                        url: 'https://docs.google.com/spreadsheets/d/1_l4veMaYIGuPvOvHMIKW8QPeI8cjqS2PwsRJ_-7VpBI/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'Registrasi Peraturan Kalurahan',
+                        url: 'https://docs.google.com/spreadsheets/d/1pxaKMXOtvwTjAdqV3Y9_AuXcF095KBzXrhhAwX_VU4k/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'Registrasi Peraturan Lurah',
+                        url: 'https://docs.google.com/spreadsheets/d/1pOaSo2FLYuwA5mM3Q-6Nj-7ZguObH689JKO7MVS79GA/edit?gid=0#gid=0'
+                    },
+                    'Registrasi Surat Keputusan Lurah',
+                    {
+                        name: 'Registrasi Lembar Berita Kalurahan',
+                        url: 'https://docs.google.com/spreadsheets/d/1zaJrObMkFFolptzeG_xakccwts03euFltP1SaTBCdcQ/edit?gid=0#gid=0'
+                    },
+
+                    {
+                        name: 'Registrasi Pengajuan SPP',
+                        url: 'https://docs.google.com/spreadsheets/d/1w2PODlEfOBKJiItoo9ro_rqYZWSJ0xEEb3wwLGes45w/edit?gid=0#gid=0'
+                    },
+                    {
+                        name: 'SS',
+                        url: 'https://docs.google.com/spreadsheets/d/1PmP8ePQ3zmLJxsC-OzVBN_keaJxZVr4q/edit?gid=265795833#gid=265795833'
+                    }
+                ]
+            },
+            tatalaksana: {
+                title: 'TATA LAKSANA',
+                description: 'Prosedur dan tata cara pelayanan di desa',
+                menu: [
+                    'Profil Kependudukan Bulanan',
+                    'Jumlah Layanan',
+                    'Progres Layanan Adminduk',
+                    {
+                        name: 'Analisis Data Kependudukan',
+                        url: 'https://drive.google.com/file/d/1r66qRwn5jHppVvJcLZaeKnV--YOoJit6/view'
+                    },
+                    {
+                        name: 'Penggunaan Ruangan',
+                        url: 'https://docs.google.com/spreadsheets/d/16wlgmE-P1wMRsHhqG2aFGKNcC6VB_CRV1kzpxxYsJCw/edit?gid=0#gid=0'
+                    }
+                ]
+            },
+            danarta: {
+                title: 'DANARTA',
+                description: 'Sejarah, visi misi, dan profil lengkap desa',
+                menu: [
+                    'Registrasi Pencarian SPP'
+                ]
+            },
+            pangripta: {
+                title: 'PANGRIPTA',
+                description: 'Struktur organisasi dan perangkat desa',
+                menu: [
+                    'RPJM',
+                    'Profil Kelurahan',
+                    {
+                        name: 'Publikasi Potensi Kalurahan Wukirsari',
+                        url: 'https://drive.google.com/file/d/1zKQln1sTnIlplpRSos88Zb1K-0LPRG5S/view'
+                    }
+                ]
+            },
+            jagabaya: {
+                title: 'JAGABAYA',
+                description: 'Informasi anggaran dan keuangan desa',
+                menu: [
+                    'APBDes',
+                    'Laporan Keuangan',
+                    'Realisasi Anggaran',
+                    'Transparansi Dana'
+                ]
+            },
+            uluulu: {
+                title: 'ULU ULU',
+                description: 'Program pembangunan dan pemberdayaan masyarakat',
+                menu: [
+                    'Program Unggulan',
+                    'Pemberdayaan Masyarakat',
+                    'Infrastruktur',
+                    'Program Sosial'
+                ]
+            },
+            kamituwa: {
+                title: 'KAMITUWA',
+                description: 'Berita terkini dan pengumuman desa',
+                menu: [
+                    'Profil Kebudayaan',
+                    'Daftar'
+                ]
+            },
+            ppid: {
+                title: 'PPID (Pejabat Pengelola Informasi & Dokumentasi)',
+                description: 'Informasi kontak dan lokasi kantor desa',
+                menu: [
+                    'Alamat Kantor',
+                    'Nomor Telepon',
+                    'Email Resmi',
+                    'Media Sosial'
+                ]
+            }
+        };
+
+        function openModal(cardType) {
+            const modal = document.getElementById('modalOverlay');
+            const data = modalData[cardType];
+            
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDescription').textContent = data.description;
+            
+            const menuList = document.getElementById('modalMenuList');
+            menuList.innerHTML = '';
+            
+            data.menu.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'modal-menu-item';
+                
+                // Check if item has a link
+                if (typeof item === 'object' && item.name && item.url) {
+                    li.classList.add('has-link');
+                    const link = document.createElement('a');
+                    link.href = item.url;
+                    link.target = '_blank';
+                    link.textContent = item.name;
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+                    link.style.cursor = 'pointer';
+                    li.appendChild(link);
+                } else {
+                    li.textContent = typeof item === 'string' ? item : item.name;
+                }
+                
+                menuList.appendChild(li);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Add closing animation
+            modalContent.style.animation = 'modalClose 0.3s ease-out both';
+            
+            setTimeout(() => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                modalContent.style.animation = '';
+            }, 300);
+        }
+
+        // Add modal close animation
+        const modalCloseStyle = document.createElement('style');
+        modalCloseStyle.textContent = `
+            @keyframes modalClose {
+                0% {
+                    transform: scale(1) translateY(0) rotateY(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0.8) translateY(30px) rotateY(-10deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(modalCloseStyle);
+
+        // Close modal when clicking outside
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            const chevron = button.querySelector('.chevron');
+            const isActive = dropdown.classList.contains('active');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-content.active').forEach(dd => {
+                dd.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.chevron.rotated').forEach(ch => {
+                ch.classList.remove('rotated');
+            });
+            
+            // Toggle current dropdown
+            if (!isActive) {
+                dropdown.classList.add('active');
+                chevron.classList.add('rotated');
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.menu-card')) {
+                document.querySelectorAll('.dropdown-content.active').forEach(dd => {
+                    dd.classList.remove('active');
+                });
+                document.querySelectorAll('.chevron.rotated').forEach(ch => {
+                    ch.classList.remove('rotated');
+                });
+            }
+        });
+
+        // Simple page load animation
+        window.addEventListener('load', function() {
+            // Simple fade in for cards
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Simple modal function
+        function openModal(cardType) {
+            const modal = document.getElementById('modalOverlay');
+            const data = modalData[cardType];
+            
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDescription').textContent = data.description;
+            
+            const menuList = document.getElementById('modalMenuList');
+            menuList.innerHTML = '';
+            
+            data.menu.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'modal-menu-item';
+                
+                // Check if item has a link
+                if (typeof item === 'object' && item.name && item.url) {
+                    li.classList.add('has-link');
+                    const link = document.createElement('a');
+                    link.href = item.url;
+                    link.target = '_blank';
+                    link.textContent = item.name;
+                    link.style.textDecoration = 'none';
+                    link.style.color = 'inherit';
+                    link.style.cursor = 'pointer';
+                    li.appendChild(link);
+                } else {
+                    li.textContent = typeof item === 'string' ? item : item.name;
+                }
+                
+                menuList.appendChild(li);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Real-time Date and Time Display
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            
+            // Format time
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
+            
+            // Update display
+            document.getElementById('currentDate').textContent = formattedDate;
+            document.getElementById('currentTime').textContent = formattedTime;
+        }
+
+        // Update time every second
+        setInterval(updateDateTime, 1000);
+        
+        // Initialize on page load
+        updateDateTime();
+
+        // Loading Screen Control
+        window.addEventListener('load', function() {
+            // Simulate loading time (minimum 3 seconds for effect)
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.classList.add('fade-out');
+                
+                // Remove loading screen from DOM after fade out
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                    
+                    // Start page animations after loading screen disappears
+                    document.body.classList.add('loaded');
+                    
+                    // Animate cards with stagger effect
+                    const cards = document.querySelectorAll('.menu-card');
+                    cards.forEach((card, index) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }, 800);
+            }, 3000); // Loading screen duration
+        });
+
+        // Real-time Date and Time Display
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            
+            // Format time
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
+            
+            // Update display
+            document.getElementById('currentDate').textContent = formattedDate;
+            document.getElementById('currentTime').textContent = formattedTime;
+        }
+
+        // Update time every second
+        setInterval(updateDateTime, 1000);
+        
+        // Initialize on page load
+        updateDateTime();
+    </script>
+</body>
+</html>
