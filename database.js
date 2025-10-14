@@ -1,4 +1,18 @@
 // Database Management System menggunakan localStorage
+// 
+// Default Users (Demo Credentials):
+// 1. Admin Account:
+//    - Username: admin
+//    - Password: admin123
+//    - Role: admin
+//    - Access: Full CRUD operations
+//
+// 2. User Account:
+//    - Username: user
+//    - Password: user123
+//    - Role: user
+//    - Access: Read-only
+//
 class Database {
     constructor() {
         this.initDatabase();

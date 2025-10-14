@@ -1,4 +1,9 @@
 // Authentication & Authorization System
+// 
+// Demo Credentials (for development/testing only):
+// - Admin: username = "admin", password = "admin123"
+// - User:  username = "user",  password = "user123"
+//
 class AuthSystem {
     constructor() {
         this.checkLoginStatus();
