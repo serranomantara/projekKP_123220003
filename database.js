@@ -442,3 +442,8 @@ class Database {
 
 // Inisialisasi database
 const db = new Database();
+
+// Make database available globally
+window.db = db;
+
+console.log('Database initialized with', Object.keys(localStorage).filter(k => k.startsWith('menu_')).length, 'menu collections');

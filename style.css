@@ -2139,50 +2139,6 @@ body.loaded .footer {
     opacity: 1;
 }
 
-/* Selected Main Menu Styles */
-.modal-menu-item.selected-main-menu {
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-    border-left: 5px solid #ff9800;
-    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.25);
-}
-
-.modal-menu-item.selected-main-menu:hover {
-    background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
-    border-left-width: 6px;
-    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
-}
-
-.main-menu-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-left: 10px;
-    padding: 3px 10px;
-    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-    color: white;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
-    animation: badgePulse 2s ease-in-out infinite;
-}
-
-.main-menu-badge svg {
-    flex-shrink: 0;
-}
-
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 3px 12px rgba(255, 152, 0, 0.5);
-    }
-}
-
 .modal-close {
     position: absolute;
     top: 15px;
@@ -3909,19 +3865,6 @@ textarea.form-input {
         padding: 5px 12px;
     }
     
-    /* Selected menu badge responsive */
-    .main-menu-badge {
-        font-size: 0.7rem;
-        padding: 2px 8px;
-        margin-left: 8px;
-        gap: 4px;
-    }
-    
-    .main-menu-badge svg {
-        width: 12px;
-        height: 12px;
-    }
-    
     /* Card admin controls visible on mobile */
     .card-admin-controls {
         opacity: 1;
@@ -4071,24 +4014,6 @@ textarea.form-input {
     
     .form-hint::before {
         font-size: 0.8rem;
-    }
-    
-    /* Selected menu badge mobile */
-    .main-menu-badge {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-        margin-left: 6px;
-        gap: 3px;
-        border-radius: 8px;
-    }
-    
-    .main-menu-badge svg {
-        width: 10px;
-        height: 10px;
-    }
-    
-    .modal-menu-item.selected-main-menu {
-        border-left-width: 4px;
     }
     
     .form-actions {

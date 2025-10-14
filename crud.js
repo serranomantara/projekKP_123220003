@@ -6,12 +6,18 @@ class CRUDManager {
     }
 
     // Load menu items ke modal
-    loadMenuItems(menuType, selectedMenuId = null) {
+    loadMenuItems(menuType) {
         this.currentMenu = menuType;
         const items = db.getMenuItems(menuType);
         const menuList = document.getElementById('modalMenuList');
         
-        if (!menuList) return;
+        console.log('loadMenuItems called with:', menuType);
+        console.log('Items found:', items.length);
+        
+        if (!menuList) {
+            console.error('modalMenuList element not found!');
+            return;
+        }
         
         menuList.innerHTML = '';
         
@@ -19,11 +25,6 @@ class CRUDManager {
             const li = document.createElement('li');
             li.className = 'modal-menu-item';
             li.dataset.itemId = item.id;
-            
-            // Add selected indicator class if this is the selected menu
-            if (selectedMenuId && item.id == selectedMenuId) {
-                li.classList.add('selected-main-menu');
-            }
             
             const contentDiv = document.createElement('div');
             contentDiv.className = 'item-content';
@@ -42,19 +43,6 @@ class CRUDManager {
             titleSpan.className = 'item-title';
             titleSpan.textContent = item.title;
             textDiv.appendChild(titleSpan);
-            
-            // Add "Menu Utama" badge if this is the selected menu
-            if (selectedMenuId && item.id == selectedMenuId) {
-                const badge = document.createElement('span');
-                badge.className = 'main-menu-badge';
-                badge.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    Menu Utama
-                `;
-                titleSpan.appendChild(badge);
-            }
             
             if (item.description) {
                 const descSpan = document.createElement('span');
@@ -262,13 +250,6 @@ class CRUDManager {
 
         const title = card.querySelector('.card-title').textContent;
         const description = card.querySelector('.card-description').textContent;
-        
-        // Get existing menu items
-        const menuItems = db.getMenuItems(menuType);
-        
-        // Get saved selected menu if exists
-        const savedData = JSON.parse(localStorage.getItem('menuCards') || '{}');
-        const selectedMenuId = savedData[menuType]?.selectedMenuId || '';
 
         const formHTML = `
             <div class="crud-form-overlay active" id="cardEditFormOverlay" onclick="crud.handleOverlayClick(event)">
@@ -312,25 +293,7 @@ class CRUDManager {
                                 Deskripsi Menu
                             </label>
                             <textarea id="cardDescription" class="form-input" required placeholder="Masukkan deskripsi singkat tentang menu ini..." rows="3">${description}</textarea>
-                            <span class="form-hint">Penjelasan singkat tentang fungsi menu (maks. 100 karakter)</span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-                                </svg>
-                                Menu Utama Pilihan
-                            </label>
-                            <select id="selectedMenu" class="form-input form-select">
-                                <option value="">-- Pilih Menu Utama (Opsional) --</option>
-                                ${menuItems.map(item => `
-                                    <option value="${item.id}" ${item.id == selectedMenuId ? 'selected' : ''}>
-                                        ${item.icon ? item.icon + ' ' : ''}${item.title}
-                                    </option>
-                                `).join('')}
-                            </select>
-                            <span class="form-hint">Pilih sub-menu yang akan ditampilkan sebagai menu utama (contoh: Registrasi Pencairan SPP di Danarta)</span>
+                            <span class="form-hint">Penjelasan singkat tentang fungsi menu (maks. 150 karakter)</span>
                         </div>
                         
                         <div class="form-actions">
@@ -361,7 +324,6 @@ class CRUDManager {
         
         const title = document.getElementById('cardTitle').value;
         const description = document.getElementById('cardDescription').value;
-        const selectedMenuId = document.getElementById('selectedMenu').value;
 
         const card = document.querySelector(`.menu-card[data-menu="${menuType}"]`);
         if (card) {
@@ -372,8 +334,7 @@ class CRUDManager {
             const cardData = JSON.parse(localStorage.getItem('menuCards') || '{}');
             cardData[menuType] = { 
                 title, 
-                description,
-                selectedMenuId: selectedMenuId || null
+                description
             };
             localStorage.setItem('menuCards', JSON.stringify(cardData));
 
@@ -419,7 +380,11 @@ class CRUDManager {
 // Initialize CRUD manager
 const crud = new CRUDManager();
 
+// Make CRUD available globally
+window.crud = crud;
+
 // Load saved card data on page load
 window.addEventListener('DOMContentLoaded', () => {
     crud.loadCardData();
+    console.log('CRUD Manager initialized and loaded card data');
 });
