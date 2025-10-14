@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Desa Wukirsari</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Database & Auth Scripts -->
+    <script src="database.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="crud.js" defer></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -37,10 +41,20 @@
         
         <!-- DateTime Section Kanan -->
         <div class="datetime-display">
+            <div class="user-status-indicator" id="userStatus">
+                <div class="status-dot"></div>
+                <span>Mode Guest</span>
+            </div>
             <div class="datetime-info">
                 <span class="date" id="currentDate">Thu, Sep 18th, 2025</span>
                 <span class="time" id="currentTime">10:18:46 AM</span>
             </div>
+            <button class="login-btn" id="loginBtn">
+                <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                </svg>
+                <span>Login</span>
+            </button>
         </div>
     </div>
 
@@ -287,159 +301,153 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <button class="login-close" onclick="auth.closeLoginModal()">&times;</button>
+            <div class="login-header">
+                <div class="login-logo">
+                    <svg class="login-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h2 class="login-title">Login Portal</h2>
+                <p class="login-subtitle">Masuk ke sistem administrasi desa</p>
+            </div>
+            
+            <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <input type="text" id="loginUsername" class="form-input" required placeholder="Masukkan username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        <input type="password" id="loginPassword" class="form-input" required placeholder="Masukkan password">
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-submit-btn">
+                    <span>Login</span>
+                    <svg class="login-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                    </svg>
+                </button>
+            </form>
+            
+            <div class="login-info">
+                <div class="demo-credentials">
+                    <h4>Demo Credentials:</h4>
+                    <div class="credential-item">
+                        <strong>Admin:</strong> admin / admin123
+                    </div>
+                    <div class="credential-item">
+                        <strong>User:</strong> user / user123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRUD Form Overlay -->
+    <div class="crud-form-overlay" id="crudFormOverlay">
+        <div class="crud-form">
+            <h3 id="crudFormTitle">Tambah Item</h3>
+            <form id="crudForm" onsubmit="crud.handleSubmit(event)">
+                <input type="hidden" id="itemId">
+                <input type="hidden" id="menuType">
+                
+                <div class="form-group">
+                    <label>Judul</label>
+                    <input type="text" id="itemTitle" class="form-input" required placeholder="Masukkan judul item">
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea id="itemDescription" class="form-input" placeholder="Masukkan deskripsi (opsional)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="url" id="itemUrl" class="form-input" placeholder="https://example.com (opsional)">
+                </div>
+                
+                <div class="form-group">
+                    <label>Icon</label>
+                    <input type="text" id="itemIcon" class="form-input" placeholder="📄 (opsional)">
+                </div>
+                
+                <div class="crud-form-buttons">
+                    <button type="submit" class="submit-btn">Simpan</button>
+                    <button type="button" class="cancel-btn" onclick="crud.closeForm()">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        const modalData = {
+        // Menu titles and descriptions
+        const menuInfo = {
             sekretariat: {
                 title: 'SEKRETARIAT',
-                description: 'Informasi administrasi dan pelayanan sekretariat desa',
-                menu: [
-                    {
-                        name: 'Surat Masuk',
-                        url: 'https://docs.google.com/spreadsheets/d/1fgwTnO3BAc7NJZTLFUJb_rXPXZRZVTTYDv2-WA3r_K4/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'Surat Keluar',
-                        url: 'https://docs.google.com/spreadsheets/d/1PyEK15hUXySAfg71lEdTLbX4X5UvHRTOkXIQv-jGl9Y/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'Undangan Masuk',
-                        url: 'https://docs.google.com/spreadsheets/d/1aEtD4f3aWmnArxQBlhTpR0NYYxrvkxw2rDhaX8uy2kc/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'Undangan Keluar',
-                        url: 'https://docs.google.com/spreadsheets/d/1_l4veMaYIGuPvOvHMIKW8QPeI8cjqS2PwsRJ_-7VpBI/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'Registrasi Peraturan Kalurahan',
-                        url: 'https://docs.google.com/spreadsheets/d/1pxaKMXOtvwTjAdqV3Y9_AuXcF095KBzXrhhAwX_VU4k/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'Registrasi Peraturan Lurah',
-                        url: 'https://docs.google.com/spreadsheets/d/1pOaSo2FLYuwA5mM3Q-6Nj-7ZguObH689JKO7MVS79GA/edit?gid=0#gid=0'
-                    },
-                    'Registrasi Surat Keputusan Lurah',
-                    {
-                        name: 'Registrasi Lembar Berita Kalurahan',
-                        url: 'https://docs.google.com/spreadsheets/d/1zaJrObMkFFolptzeG_xakccwts03euFltP1SaTBCdcQ/edit?gid=0#gid=0'
-                    },
-
-                    {
-                        name: 'Registrasi Pengajuan SPP',
-                        url: 'https://docs.google.com/spreadsheets/d/1w2PODlEfOBKJiItoo9ro_rqYZWSJ0xEEb3wwLGes45w/edit?gid=0#gid=0'
-                    },
-                    {
-                        name: 'SS',
-                        url: 'https://docs.google.com/spreadsheets/d/1PmP8ePQ3zmLJxsC-OzVBN_keaJxZVr4q/edit?gid=265795833#gid=265795833'
-                    }
-                ]
+                description: 'Informasi administrasi dan pelayanan sekretariat desa'
             },
             tatalaksana: {
                 title: 'TATA LAKSANA',
-                description: 'Prosedur dan tata cara pelayanan di desa',
-                menu: [
-                    'Profil Kependudukan Bulanan',
-                    'Jumlah Layanan',
-                    'Progres Layanan Adminduk',
-                    {
-                        name: 'Analisis Data Kependudukan',
-                        url: 'https://drive.google.com/file/d/1r66qRwn5jHppVvJcLZaeKnV--YOoJit6/view'
-                    },
-                    {
-                        name: 'Penggunaan Ruangan',
-                        url: 'https://docs.google.com/spreadsheets/d/16wlgmE-P1wMRsHhqG2aFGKNcC6VB_CRV1kzpxxYsJCw/edit?gid=0#gid=0'
-                    }
-                ]
+                description: 'Prosedur dan tata cara pelayanan di desa'
             },
             danarta: {
                 title: 'DANARTA',
-                description: 'Sejarah, visi misi, dan profil lengkap desa',
-                menu: [
-                    'Registrasi Pencarian SPP'
-                ]
+                description: 'Informasi keuangan dan anggaran desa'
             },
             pangripta: {
                 title: 'PANGRIPTA',
-                description: 'Struktur organisasi dan perangkat desa',
-                menu: [
-                    'RPJM',
-                    'Profil Kelurahan',
-                    {
-                        name: 'Publikasi Potensi Kalurahan Wukirsari',
-                        url: 'https://drive.google.com/file/d/1zKQln1sTnIlplpRSos88Zb1K-0LPRG5S/view'
-                    }
-                ]
+                description: 'Program pembangunan dan perencanaan desa'
             },
             jagabaya: {
                 title: 'JAGABAYA',
-                description: 'Informasi anggaran dan keuangan desa',
-                menu: [
-                    'APBDes',
-                    'Laporan Keuangan',
-                    'Realisasi Anggaran',
-                    'Transparansi Dana'
-                ]
+                description: 'Keamanan dan ketertiban desa'
             },
             uluulu: {
                 title: 'ULU ULU',
-                description: 'Program pembangunan dan pemberdayaan masyarakat',
-                menu: [
-                    'Program Unggulan',
-                    'Pemberdayaan Masyarakat',
-                    'Infrastruktur',
-                    'Program Sosial'
-                ]
+                description: 'Program pembangunan dan pemberdayaan masyarakat'
             },
             kamituwa: {
                 title: 'KAMITUWA',
-                description: 'Berita terkini dan pengumuman desa',
-                menu: [
-                    'Profil Kebudayaan',
-                    'Daftar'
-                ]
+                description: 'Budaya dan kearifan lokal desa'
             },
             ppid: {
                 title: 'PPID (Pejabat Pengelola Informasi & Dokumentasi)',
-                description: 'Informasi kontak dan lokasi kantor desa',
-                menu: [
-                    'Alamat Kantor',
-                    'Nomor Telepon',
-                    'Email Resmi',
-                    'Media Sosial'
-                ]
+                description: 'Informasi publik dan dokumentasi desa'
             }
         };
 
-        function openModal(cardType) {
+        // Open modal with CRUD integration
+        function openModal(menuType) {
             const modal = document.getElementById('modalOverlay');
-            const data = modalData[cardType];
+            const info = menuInfo[menuType];
             
-            document.getElementById('modalTitle').textContent = data.title;
-            document.getElementById('modalDescription').textContent = data.description;
+            if (!info) {
+                console.error('Menu type not found:', menuType);
+                return;
+            }
             
-            const menuList = document.getElementById('modalMenuList');
-            menuList.innerHTML = '';
+            document.getElementById('modalTitle').textContent = info.title;
+            document.getElementById('modalDescription').textContent = info.description;
             
-            data.menu.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'modal-menu-item';
-                
-                // Check if item has a link
-                if (typeof item === 'object' && item.name && item.url) {
-                    li.classList.add('has-link');
-                    const link = document.createElement('a');
-                    link.href = item.url;
-                    link.target = '_blank';
-                    link.textContent = item.name;
-                    link.style.textDecoration = 'none';
-                    link.style.color = 'inherit';
-                    link.style.cursor = 'pointer';
-                    li.appendChild(link);
-                } else {
-                    li.textContent = typeof item === 'string' ? item : item.name;
-                }
-                
-                menuList.appendChild(li);
-            });
+            // Load menu items using CRUD manager
+            if (window.crud) {
+                crud.loadMenuItems(menuType);
+            }
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -522,8 +530,50 @@
             }
         });
 
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (window.auth) {
+                const success = auth.login(username, password);
+                if (success) {
+                    // Close login modal
+                    document.getElementById('loginOverlay').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Clear form
+                    document.getElementById('loginForm').reset();
+                }
+            }
+        }
+
+        // Open login modal
+        function openLoginModal() {
+            const loginOverlay = document.getElementById('loginOverlay');
+            loginOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            const loginOverlay = document.getElementById('loginOverlay');
+            loginOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('loginForm').reset();
+        }
+
         // Simple page load animation
         window.addEventListener('load', function() {
+            // Initialize systems
+            if (window.db) {
+                db.initDatabase();
+            }
+            if (window.auth) {
+                auth.updateUI();
+            }
+            
             // Simple fade in for cards
             const cards = document.querySelectorAll('.menu-card');
             cards.forEach((card, index) => {
@@ -536,43 +586,6 @@
                 }, index * 100);
             });
         });
-
-        // Simple modal function
-        function openModal(cardType) {
-            const modal = document.getElementById('modalOverlay');
-            const data = modalData[cardType];
-            
-            document.getElementById('modalTitle').textContent = data.title;
-            document.getElementById('modalDescription').textContent = data.description;
-            
-            const menuList = document.getElementById('modalMenuList');
-            menuList.innerHTML = '';
-            
-            data.menu.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'modal-menu-item';
-                
-                // Check if item has a link
-                if (typeof item === 'object' && item.name && item.url) {
-                    li.classList.add('has-link');
-                    const link = document.createElement('a');
-                    link.href = item.url;
-                    link.target = '_blank';
-                    link.textContent = item.name;
-                    link.style.textDecoration = 'none';
-                    link.style.color = 'inherit';
-                    link.style.cursor = 'pointer';
-                    li.appendChild(link);
-                } else {
-                    li.textContent = typeof item === 'string' ? item : item.name;
-                }
-                
-                menuList.appendChild(li);
-            });
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
 
         // Real-time Date and Time Display
         function updateDateTime() {
