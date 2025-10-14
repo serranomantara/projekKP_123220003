@@ -142,22 +142,20 @@ class AuthSystem {
         const menuHTML = `
             <div class="user-menu-overlay" id="userMenuOverlay" onclick="if(event.target===this) auth.closeUserMenu()">
                 <div class="user-menu" onclick="event.stopPropagation()">
-                    <div class="user-info">
-                        <div class="user-avatar ${user.role}">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    <div class="user-menu-header">
+                        <div class="user-menu-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
                         </div>
-                        <div class="user-details">
-                            <h3>${user.nama}</h3>
-                            <p class="user-role">${user.role === 'admin' ? 'Administrator' : 'User'}</p>
-                            <p class="user-email">${user.email}</p>
-                        </div>
+                        <h4>${user.nama}</h4>
+                        <p>${user.email}</p>
+                        <span class="user-role ${user.role}">${user.role === 'admin' ? 'Administrator' : 'User'}</span>
                     </div>
                     <div class="user-menu-actions">
-                        <button class="user-menu-btn" onclick="auth.logout(); auth.closeUserMenu();">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        <button class="user-menu-btn logout-btn" onclick="auth.logout(); auth.closeUserMenu();">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                             </svg>
                             Logout
                         </button>

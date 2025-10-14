@@ -1,4 +1,4 @@
-// CRUD Operations Manager
+ // CRUD Operations Manager
 class CRUDManager {
     constructor() {
         this.currentMenu = null;
@@ -236,7 +236,98 @@ class CRUDManager {
         }
         this.editingItemId = null;
     }
+
+    // Open Card Edit Form (untuk edit judul dan deskripsi card utama)
+    openCardEditForm(menuType) {
+        const card = document.querySelector(`.menu-card[data-menu="${menuType}"]`);
+        if (!card) return;
+
+        const title = card.querySelector('.card-title').textContent;
+        const description = card.querySelector('.card-description').textContent;
+
+        const formHTML = `
+            <div class="crud-form-overlay active" id="cardEditFormOverlay">
+                <div class="crud-form">
+                    <div class="crud-form-header">
+                        <h3>Edit Menu Card</h3>
+                        <button class="close-form-btn" onclick="crud.closeCardEditForm()">&times;</button>
+                    </div>
+                    <form id="cardEditForm" onsubmit="crud.handleCardEdit(event, '${menuType}')">
+                        <div class="form-group">
+                            <label class="form-label">Judul Menu</label>
+                            <input type="text" id="cardTitle" class="form-input" value="${title}" required placeholder="Masukkan judul menu">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Deskripsi Menu</label>
+                            <textarea id="cardDescription" class="form-input" required placeholder="Masukkan deskripsi menu">${description}</textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" onclick="crud.closeCardEditForm()">Batal</button>
+                            <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', formHTML);
+    }
+
+    // Handle card edit submit
+    handleCardEdit(event, menuType) {
+        event.preventDefault();
+        
+        const title = document.getElementById('cardTitle').value;
+        const description = document.getElementById('cardDescription').value;
+
+        const card = document.querySelector(`.menu-card[data-menu="${menuType}"]`);
+        if (card) {
+            card.querySelector('.card-title').textContent = title;
+            card.querySelector('.card-description').textContent = description;
+
+            // Simpan ke localStorage
+            const cardData = JSON.parse(localStorage.getItem('menuCards') || '{}');
+            cardData[menuType] = { title, description };
+            localStorage.setItem('menuCards', JSON.stringify(cardData));
+
+            auth.showNotification('Menu card berhasil diupdate!', 'success');
+            this.closeCardEditForm();
+        }
+    }
+
+    // Close card edit form
+    closeCardEditForm() {
+        const overlay = document.getElementById('cardEditFormOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.remove(), 300);
+        }
+    }
+
+    // Load saved card data
+    loadCardData() {
+        const cardData = JSON.parse(localStorage.getItem('menuCards') || '{}');
+        
+        Object.keys(cardData).forEach(menuType => {
+            const card = document.querySelector(`.menu-card[data-menu="${menuType}"]`);
+            if (card && cardData[menuType]) {
+                if (cardData[menuType].title) {
+                    card.querySelector('.card-title').textContent = cardData[menuType].title;
+                }
+                if (cardData[menuType].description) {
+                    card.querySelector('.card-description').textContent = cardData[menuType].description;
+                }
+            }
+        });
+    }
 }
 
 // Initialize CRUD manager
 const crud = new CRUDManager();
+
+// Load saved card data on page load
+window.addEventListener('DOMContentLoaded', () => {
+    crud.loadCardData();
+});
