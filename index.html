@@ -549,21 +549,6 @@
             }
         }
 
-        // Open login modal
-        function openLoginModal() {
-            const loginOverlay = document.getElementById('loginOverlay');
-            loginOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close login modal
-        function closeLoginModal() {
-            const loginOverlay = document.getElementById('loginOverlay');
-            loginOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            document.getElementById('loginForm').reset();
-        }
-
         // Simple page load animation
         window.addEventListener('load', function() {
             // Initialize systems

@@ -119,6 +119,11 @@ class AuthSystem {
         if (modal) {
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            // Reset form
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.reset();
+            }
         }
     }
 
@@ -215,3 +220,24 @@ class AuthSystem {
 
 // Initialize auth system
 const auth = new AuthSystem();
+
+// Global functions untuk onclick handlers di HTML
+function closeLoginModal() {
+    auth.closeLoginModal();
+}
+
+function openLoginModal() {
+    auth.openLoginModal();
+}
+
+// Event listener untuk close modal saat klik di luar
+document.addEventListener('DOMContentLoaded', function() {
+    const loginOverlay = document.getElementById('loginOverlay');
+    if (loginOverlay) {
+        loginOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+    }
+});
