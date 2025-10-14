@@ -2950,6 +2950,8 @@ body.loaded .footer {
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .crud-form-overlay.active {
@@ -2959,22 +2961,247 @@ body.loaded .footer {
 
 .crud-form {
     background: white;
-    border-radius: 15px;
-    padding: 35px;
+    border-radius: 20px;
+    padding: 0;
     width: 90%;
-    max-width: 550px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
     animation: modalSlideIn 0.3s ease;
+    position: relative;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Edit Form Specific Styles */
+.card-edit-form {
+    max-width: 680px;
+}
+
+.crud-form-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px 30px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.crud-form-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.header-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
+
+.header-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
+}
+
+.crud-form-header h3 {
+    color: white;
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.form-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.close-form-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.close-form-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: white;
+    stroke-width: 2.5;
+}
+
+.close-form-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.crud-form form {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.crud-form .form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.form-label svg {
+    width: 18px;
+    height: 18px;
+    stroke: #667eea;
+    stroke-width: 2.5;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e8ecf1;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: #f8f9fb;
+    color: #2c3e50;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23667eea'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 45px;
+}
+
+.form-select option {
+    padding: 10px;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 90px;
+    max-height: 180px;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f2f5;
+}
+
+.form-actions button {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.form-actions button svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.btn-cancel {
+    background: #f0f2f5;
+    color: #5a6c7d;
+}
+
+.btn-cancel:hover {
+    background: #e4e7eb;
+    color: #2c3e50;
 }
 
 .crud-form h3 {
     color: #2c3e50;
     margin-bottom: 25px;
     font-size: 1.6rem;
-}
-
-.crud-form .form-group {
-    margin-bottom: 18px;
 }
 
 .crud-form textarea {
@@ -3429,11 +3656,64 @@ body.loaded .footer {
     
     .login-modal,
     .crud-form {
-        padding: 35px 25px;
         width: 95%;
         max-width: 95%;
-        border-radius: 20px;
-        max-height: 88vh;
+        border-radius: 16px;
+        max-height: 90vh;
+    }
+    
+    .login-modal {
+        padding: 35px 25px;
+    }
+    
+    .crud-form form {
+        padding: 20px;
+    }
+    
+    .crud-form-header {
+        padding: 20px;
+    }
+    
+    .crud-form-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .form-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .header-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .header-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .close-form-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .close-form-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .form-input {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .form-label {
+        font-size: 0.9rem;
+    }
+    
+    .form-actions button {
+        padding: 12px 16px;
+        font-size: 0.95rem;
     }
     
     /* Notification responsive */
@@ -3461,7 +3741,8 @@ body.loaded .footer {
     }
     
     /* Scrollbar lebih tipis di tablet */
-    .login-modal::-webkit-scrollbar {
+    .login-modal::-webkit-scrollbar,
+    .crud-form form::-webkit-scrollbar {
         width: 6px;
     }
     
@@ -3563,7 +3844,8 @@ body.loaded .footer {
 }
 
 @media (max-width: 480px) {
-    .login-overlay {
+    .login-overlay,
+    .crud-form-overlay {
         padding: 15px;
     }
     
@@ -3572,12 +3854,116 @@ body.loaded .footer {
         max-height: 85vh;
     }
     
+    .crud-form {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+        max-height: 88vh;
+    }
+    
+    .crud-form form {
+        padding: 15px;
+    }
+    
+    .crud-form-header {
+        padding: 16px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .crud-form-header h3 {
+        font-size: 1.15rem;
+    }
+    
+    .form-subtitle {
+        font-size: 0.8rem;
+        display: none; /* Hide subtitle on very small screens */
+    }
+    
+    .header-content {
+        gap: 10px;
+    }
+    
+    .header-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .header-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .close-form-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .close-form-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+    
+    .form-label svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .form-input {
+        padding: 11px 12px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .form-select {
+        padding-right: 40px;
+        background-size: 18px;
+    }
+    
+    textarea.form-input {
+        min-height: 80px;
+        max-height: 150px;
+    }
+    
+    .form-hint {
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .form-actions button svg {
+        width: 18px;
+        height: 18px;
+    }
+    
     /* Scrollbar sangat tipis di mobile */
-    .login-modal::-webkit-scrollbar {
+    .login-modal::-webkit-scrollbar,
+    .crud-form form::-webkit-scrollbar {
         width: 4px;
     }
     
-    .login-modal::-webkit-scrollbar-track {
+    .login-modal::-webkit-scrollbar-track,
+    .crud-form form::-webkit-scrollbar-track {
         margin: 5px 0;
     }
     

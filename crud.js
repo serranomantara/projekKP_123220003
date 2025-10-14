@@ -244,28 +244,90 @@ class CRUDManager {
 
         const title = card.querySelector('.card-title').textContent;
         const description = card.querySelector('.card-description').textContent;
+        
+        // Get existing menu items
+        const menuItems = db.getMenuItems(menuType);
+        
+        // Get saved selected menu if exists
+        const savedData = JSON.parse(localStorage.getItem('menuCards') || '{}');
+        const selectedMenuId = savedData[menuType]?.selectedMenuId || '';
 
         const formHTML = `
-            <div class="crud-form-overlay active" id="cardEditFormOverlay">
-                <div class="crud-form">
+            <div class="crud-form-overlay active" id="cardEditFormOverlay" onclick="crud.handleOverlayClick(event)">
+                <div class="crud-form card-edit-form">
                     <div class="crud-form-header">
-                        <h3>Edit Menu Card</h3>
-                        <button class="close-form-btn" onclick="crud.closeCardEditForm()">&times;</button>
+                        <div class="header-content">
+                            <div class="header-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Edit Kartu Menu</h3>
+                                <p class="form-subtitle">Kustomisasi tampilan menu layanan publik</p>
+                            </div>
+                        </div>
+                        <button class="close-form-btn" onclick="crud.closeCardEditForm()" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
+                    
                     <form id="cardEditForm" onsubmit="crud.handleCardEdit(event, '${menuType}')">
                         <div class="form-group">
-                            <label class="form-label">Judul Menu</label>
-                            <input type="text" id="cardTitle" class="form-input" value="${title}" required placeholder="Masukkan judul menu">
+                            <label class="form-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                                </svg>
+                                Judul Menu
+                            </label>
+                            <input type="text" id="cardTitle" class="form-input" value="${title}" required placeholder="Contoh: SEKRETARIAT">
+                            <span class="form-hint">Nama utama yang akan ditampilkan pada kartu menu</span>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Deskripsi Menu</label>
-                            <textarea id="cardDescription" class="form-input" required placeholder="Masukkan deskripsi menu">${description}</textarea>
+                            <label class="form-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Deskripsi Menu
+                            </label>
+                            <textarea id="cardDescription" class="form-input" required placeholder="Masukkan deskripsi singkat tentang menu ini..." rows="3">${description}</textarea>
+                            <span class="form-hint">Penjelasan singkat tentang fungsi menu (maks. 100 karakter)</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                                </svg>
+                                Menu Utama Pilihan
+                            </label>
+                            <select id="selectedMenu" class="form-input form-select">
+                                <option value="">-- Pilih Menu Utama (Opsional) --</option>
+                                ${menuItems.map(item => `
+                                    <option value="${item.id}" ${item.id == selectedMenuId ? 'selected' : ''}>
+                                        ${item.icon ? item.icon + ' ' : ''}${item.title}
+                                    </option>
+                                `).join('')}
+                            </select>
+                            <span class="form-hint">Pilih sub-menu yang akan ditampilkan sebagai menu utama (contoh: Registrasi Pencairan SPP di Danarta)</span>
                         </div>
                         
                         <div class="form-actions">
-                            <button type="button" class="btn-cancel" onclick="crud.closeCardEditForm()">Batal</button>
-                            <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                            <button type="button" class="btn-cancel" onclick="crud.closeCardEditForm()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                                Batal
+                            </button>
+                            <button type="submit" class="btn-submit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Simpan Perubahan
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -281,6 +343,7 @@ class CRUDManager {
         
         const title = document.getElementById('cardTitle').value;
         const description = document.getElementById('cardDescription').value;
+        const selectedMenuId = document.getElementById('selectedMenu').value;
 
         const card = document.querySelector(`.menu-card[data-menu="${menuType}"]`);
         if (card) {
@@ -289,10 +352,14 @@ class CRUDManager {
 
             // Simpan ke localStorage
             const cardData = JSON.parse(localStorage.getItem('menuCards') || '{}');
-            cardData[menuType] = { title, description };
+            cardData[menuType] = { 
+                title, 
+                description,
+                selectedMenuId: selectedMenuId || null
+            };
             localStorage.setItem('menuCards', JSON.stringify(cardData));
 
-            auth.showNotification('Menu card berhasil diupdate!', 'success');
+            auth.showNotification('Kartu menu berhasil diperbarui!', 'success');
             this.closeCardEditForm();
         }
     }
@@ -303,6 +370,13 @@ class CRUDManager {
         if (overlay) {
             overlay.classList.remove('active');
             setTimeout(() => overlay.remove(), 300);
+        }
+    }
+
+    // Handle overlay click to close
+    handleOverlayClick(event) {
+        if (event.target.id === 'cardEditFormOverlay') {
+            this.closeCardEditForm();
         }
     }
 
