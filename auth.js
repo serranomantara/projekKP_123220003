@@ -16,7 +16,11 @@ class AuthSystem {
 
     // Login function
     login(username, password) {
+        console.log('Attempting login for:', username);
+        
         const user = db.authenticateUser(username, password);
+        
+        console.log('Authentication result:', user ? 'Success' : 'Failed');
         
         if (user) {
             db.setCurrentUser(user);

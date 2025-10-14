@@ -388,9 +388,15 @@ class Database {
 
     authenticateUser(username, password) {
         const users = this.getUsers();
-        return users.find(user => 
+        console.log('Users in database:', users);
+        console.log('Trying to authenticate:', { username, password });
+        
+        const user = users.find(user => 
             user.username === username && user.password === password
         );
+        
+        console.log('Found user:', user);
+        return user;
     }
 
     // Session Management

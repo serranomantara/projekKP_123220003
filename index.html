@@ -533,19 +533,33 @@
         // Handle login form submission
         function handleLogin(event) {
             event.preventDefault();
+            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            if (window.auth) {
+            // Validate input
+            if (!username || !password) {
+                alert('Username dan password harus diisi!');
+                return false;
+            }
+            
+            // Check if auth is available
+            if (typeof auth === 'undefined' || typeof db === 'undefined') {
+                console.error('Auth system not initialized');
+                alert('Sistem belum siap. Silakan refresh halaman.');
+                return false;
+            }
+            
+            try {
                 const success = auth.login(username, password);
                 if (success) {
-                    // Close login modal
-                    document.getElementById('loginOverlay').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    // Clear form
-                    document.getElementById('loginForm').reset();
+                    console.log('Login berhasil!');
                 }
+                return success;
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Terjadi kesalahan saat login. Silakan coba lagi.');
+                return false;
             }
         }
 
