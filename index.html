@@ -85,6 +85,9 @@
                     <div class="card-content">
                         <h3 class="card-title">SEKRETARIAT</h3>
                         <p class="card-description">Informasi administrasi dan pelayanan sekretariat desa</p>
+                        <ul class="card-menu-list" id="cardMenu-sekretariat">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('sekretariat')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -107,6 +110,9 @@
                     <div class="card-content">
                         <h3 class="card-title">TATA LAKSANA</h3>
                         <p class="card-description">Prosedur dan tata cara pelayanan di desa</p>
+                        <ul class="card-menu-list" id="cardMenu-tatalaksana">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('tatalaksana')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -129,6 +135,9 @@
                     <div class="card-content">
                         <h3 class="card-title">DANARTA</h3>
                         <p class="card-description">Peningkatan kesejahteraan masyarakat melalui pengelolaan dana</p>
+                        <ul class="card-menu-list" id="cardMenu-danarta">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('danarta')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -151,6 +160,9 @@
                     <div class="card-content">
                         <h3 class="card-title">PANGRIPTA</h3>
                         <p class="card-description">Perencanaan pembangunan dan pengelolaan program kerja</p>
+                        <ul class="card-menu-list" id="cardMenu-pangripta">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('pangripta')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -173,6 +185,9 @@
                     <div class="card-content">
                         <h3 class="card-title">JAGABAYA</h3>
                         <p class="card-description">Menjaga kondusivitas lingkungan</p>
+                        <ul class="card-menu-list" id="cardMenu-jagabaya">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('jagabaya')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -195,6 +210,9 @@
                     <div class="card-content">
                         <h3 class="card-title">ULU ULU</h3>
                         <p class="card-description">Program pembangunan dan pemberdayaan masyarakat</p>
+                        <ul class="card-menu-list" id="cardMenu-uluulu">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('uluulu')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -217,6 +235,9 @@
                     <div class="card-content">
                         <h3 class="card-title">KAMITUWA</h3>
                         <p class="card-description">Membantu masyarakat dalam mengakses program bantuan sosial</p>
+                        <ul class="card-menu-list" id="cardMenu-kamituwa">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('kamituwa')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -239,6 +260,9 @@
                     <div class="card-content">
                         <h3 class="card-title">PPID (Pejabat Pengelola Informasi & Dokumentasi)</h3>
                         <p class="card-description">Informasi kontak dan lokasi kantor desa</p>
+                        <ul class="card-menu-list" id="cardMenu-ppid">
+                            <!-- Sub-menu will be loaded here -->
+                        </ul>
                         <button class="card-button" onclick="openModal('ppid')">
                             <span>Lihat Detail</span>
                             <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -631,6 +655,9 @@
                 auth.updateUI();
             }
             
+            // Load card menu items for all cards
+            loadAllCardMenus();
+            
             // Simple fade in for cards
             const cards = document.querySelectorAll('.menu-card');
             cards.forEach((card, index) => {
@@ -643,6 +670,87 @@
                 }, index * 100);
             });
         });
+
+        // Load card menu items for all cards
+        function loadAllCardMenus() {
+            const menuTypes = ['sekretariat', 'tatalaksana', 'danarta', 'pangripta', 'jagabaya', 'uluulu', 'kamituwa', 'ppid'];
+            
+            menuTypes.forEach(menuType => {
+                loadCardMenu(menuType);
+            });
+        }
+
+        // Load sub-menu items for a specific card
+        function loadCardMenu(menuType) {
+            if (typeof db === 'undefined') {
+                console.error('Database not available');
+                return;
+            }
+
+            const items = db.getMenuItems(menuType);
+            const menuList = document.getElementById(`cardMenu-${menuType}`);
+            
+            if (!menuList) {
+                console.warn(`Menu list not found for ${menuType}`);
+                return;
+            }
+            
+            menuList.innerHTML = '';
+            
+            // Limit to first 4 items for card display
+            const displayItems = items.slice(0, 4);
+            
+            displayItems.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'card-menu-item';
+                
+                const link = document.createElement('a');
+                link.href = item.url || '#';
+                if (item.url) {
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                }
+                
+                const icon = document.createElement('span');
+                icon.className = 'card-menu-icon';
+                icon.textContent = item.icon || '•';
+                
+                const text = document.createElement('span');
+                text.className = 'card-menu-text';
+                text.textContent = item.title;
+                
+                link.appendChild(icon);
+                link.appendChild(text);
+                li.appendChild(link);
+                menuList.appendChild(li);
+            });
+            
+            // Add "Lihat Semua" if more than 4 items
+            if (items.length > 4) {
+                const li = document.createElement('li');
+                li.className = 'card-menu-item card-menu-more';
+                
+                const link = document.createElement('a');
+                link.href = '#';
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    openModal(menuType);
+                };
+                
+                const icon = document.createElement('span');
+                icon.className = 'card-menu-icon';
+                icon.textContent = '⋯';
+                
+                const text = document.createElement('span');
+                text.className = 'card-menu-text';
+                text.textContent = `Lihat Semua (${items.length})`;
+                
+                link.appendChild(icon);
+                link.appendChild(text);
+                li.appendChild(link);
+                menuList.appendChild(li);
+            }
+        }
 
         // Real-time Date and Time Display
         function updateDateTime() {

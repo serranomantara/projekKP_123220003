@@ -1130,13 +1130,74 @@ body.loaded .footer {
     font-size: 0.95rem;
     margin-bottom: 16px;
     line-height: 1.5;
-    flex-grow: 1;
+    flex-grow: 0;
     transition: all 0.3s ease;
     font-weight: 400;
 }
 
 .menu-card:hover .card-description {
     color: #495057;
+}
+
+/* Card Menu List Styling */
+.card-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    flex-grow: 1;
+}
+
+.card-menu-item {
+    margin-bottom: 8px;
+    padding: 0;
+}
+
+.card-menu-item a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.card-menu-item a:hover {
+    background: rgba(52, 152, 219, 0.1);
+    border-left-color: #3498db;
+    transform: translateX(4px);
+    color: #2980b9;
+}
+
+.card-menu-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.card-menu-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.card-menu-more a {
+    background: rgba(41, 128, 185, 0.08);
+    color: #2980b9;
+    font-weight: 600;
+    border-left-color: #2980b9;
+}
+
+.card-menu-more a:hover {
+    background: rgba(41, 128, 185, 0.15);
+    color: #1e3d59;
 }
 
 /* Card Button Styling */
@@ -1156,7 +1217,7 @@ body.loaded .footer {
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    margin-top: auto;
+    margin-top: 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -1711,6 +1772,17 @@ body.loaded .footer {
         padding: 12px;
     }
     
+    /* Card menu list responsive */
+    .card-menu-item a {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .card-menu-icon {
+        font-size: 0.9rem;
+        width: 18px;
+    }
+    
     /* Modal responsiveness for mobile */
     .modal-content {
         width: 95%;
@@ -1770,6 +1842,26 @@ body.loaded .footer {
     }
     .card-description {
         font-size: 0.8rem;
+    }
+    
+    /* Card menu list responsive for small mobile */
+    .card-menu-list {
+        margin: 12px 0;
+    }
+    
+    .card-menu-item {
+        margin-bottom: 6px;
+    }
+    
+    .card-menu-item a {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+    
+    .card-menu-icon {
+        font-size: 0.85rem;
+        width: 16px;
     }
     
     /* Button responsiveness for small mobile */
