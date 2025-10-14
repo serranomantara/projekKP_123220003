@@ -500,9 +500,13 @@
             document.getElementById('modalTitle').textContent = info.title;
             document.getElementById('modalDescription').textContent = info.description;
             
-            // Load menu items using CRUD manager
+            // Get selected menu ID from localStorage
+            const savedData = JSON.parse(localStorage.getItem('menuCards') || '{}');
+            const selectedMenuId = savedData[menuType]?.selectedMenuId || null;
+            
+            // Load menu items using CRUD manager with selected menu ID
             if (window.crud) {
-                crud.loadMenuItems(menuType);
+                crud.loadMenuItems(menuType, selectedMenuId);
             }
             
             modal.classList.add('active');

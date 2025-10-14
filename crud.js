@@ -6,7 +6,7 @@ class CRUDManager {
     }
 
     // Load menu items ke modal
-    loadMenuItems(menuType) {
+    loadMenuItems(menuType, selectedMenuId = null) {
         this.currentMenu = menuType;
         const items = db.getMenuItems(menuType);
         const menuList = document.getElementById('modalMenuList');
@@ -19,6 +19,11 @@ class CRUDManager {
             const li = document.createElement('li');
             li.className = 'modal-menu-item';
             li.dataset.itemId = item.id;
+            
+            // Add selected indicator class if this is the selected menu
+            if (selectedMenuId && item.id == selectedMenuId) {
+                li.classList.add('selected-main-menu');
+            }
             
             const contentDiv = document.createElement('div');
             contentDiv.className = 'item-content';
@@ -37,6 +42,19 @@ class CRUDManager {
             titleSpan.className = 'item-title';
             titleSpan.textContent = item.title;
             textDiv.appendChild(titleSpan);
+            
+            // Add "Menu Utama" badge if this is the selected menu
+            if (selectedMenuId && item.id == selectedMenuId) {
+                const badge = document.createElement('span');
+                badge.className = 'main-menu-badge';
+                badge.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="14" height="14">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Menu Utama
+                `;
+                titleSpan.appendChild(badge);
+            }
             
             if (item.description) {
                 const descSpan = document.createElement('span');

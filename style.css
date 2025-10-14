@@ -2139,6 +2139,50 @@ body.loaded .footer {
     opacity: 1;
 }
 
+/* Selected Main Menu Styles */
+.modal-menu-item.selected-main-menu {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border-left: 5px solid #ff9800;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.25);
+}
+
+.modal-menu-item.selected-main-menu:hover {
+    background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
+    border-left-width: 6px;
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
+}
+
+.main-menu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+    padding: 3px 10px;
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+.main-menu-badge svg {
+    flex-shrink: 0;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 3px 12px rgba(255, 152, 0, 0.5);
+    }
+}
+
 .modal-close {
     position: absolute;
     top: 15px;
@@ -3072,13 +3116,30 @@ body.loaded .footer {
 }
 
 .crud-form form {
-    padding: 30px;
+    padding: 35px 40px;
     overflow-y: auto;
     flex: 1;
+    background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
 }
 
 .crud-form .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.crud-form .form-group:nth-child(1) { animation-delay: 0.1s; }
+.crud-form .form-group:nth-child(2) { animation-delay: 0.2s; }
+.crud-form .form-group:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-label {
@@ -3100,102 +3161,159 @@ body.loaded .footer {
 
 .form-input {
     width: 100%;
-    padding: 14px 16px;
+    padding: 16px 18px;
     border: 2px solid #e8ecf1;
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s ease;
-    background: #f8f9fb;
+    background: #ffffff;
     color: #2c3e50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .form-input:focus {
     outline: none;
     border-color: #667eea;
     background: white;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15), 0 0 0 4px rgba(102, 126, 234, 0.08);
+    transform: translateY(-2px);
 }
 
 .form-select {
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23667eea'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 20px;
-    padding-right: 45px;
+    background-position: right 16px center;
+    background-size: 22px;
+    padding-right: 50px;
+    font-weight: 500;
 }
 
 .form-select option {
-    padding: 10px;
+    padding: 12px;
+    background: white;
+    color: #2c3e50;
+}
+
+.form-select option:checked {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
 }
 
 textarea.form-input {
     resize: vertical;
-    min-height: 90px;
-    max-height: 180px;
+    min-height: 100px;
+    max-height: 200px;
+    line-height: 1.6;
 }
 
 .form-hint {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
     font-size: 0.85rem;
     color: #7f8c8d;
-    margin-top: 6px;
-    line-height: 1.4;
+    margin-top: 8px;
+    line-height: 1.5;
+    padding-left: 4px;
+}
+
+.form-hint::before {
+    content: "ℹ️";
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
 .form-actions {
     display: flex;
-    gap: 12px;
-    margin-top: 30px;
-    padding-top: 20px;
+    gap: 14px;
+    margin-top: 35px;
+    padding-top: 25px;
     border-top: 2px solid #f0f2f5;
+    animation: fadeInUp 0.4s ease-out 0.4s backwards;
 }
 
 .form-actions button {
     flex: 1;
-    padding: 14px 20px;
+    padding: 16px 24px;
     border: none;
-    border-radius: 12px;
-    font-size: 1rem;
+    border-radius: 14px;
+    font-size: 1.05rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-actions button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.form-actions button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .form-actions button svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     stroke-width: 2.5;
+    position: relative;
+    z-index: 1;
+}
+
+.form-actions button span {
+    position: relative;
+    z-index: 1;
 }
 
 .btn-submit {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
 }
 
 .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.45);
 }
 
 .btn-submit:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
 }
 
 .btn-cancel {
     background: #f0f2f5;
     color: #5a6c7d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .btn-cancel:hover {
     background: #e4e7eb;
     color: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.btn-cancel:active {
+    transform: translateY(0);
 }
 
 .crud-form h3 {
@@ -3791,6 +3909,19 @@ textarea.form-input {
         padding: 5px 12px;
     }
     
+    /* Selected menu badge responsive */
+    .main-menu-badge {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        margin-left: 8px;
+        gap: 4px;
+    }
+    
+    .main-menu-badge svg {
+        width: 12px;
+        height: 12px;
+    }
+    
     /* Card admin controls visible on mobile */
     .card-admin-controls {
         opacity: 1;
@@ -3936,6 +4067,28 @@ textarea.form-input {
     .form-hint {
         font-size: 0.8rem;
         margin-top: 5px;
+    }
+    
+    .form-hint::before {
+        font-size: 0.8rem;
+    }
+    
+    /* Selected menu badge mobile */
+    .main-menu-badge {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        margin-left: 6px;
+        gap: 3px;
+        border-radius: 8px;
+    }
+    
+    .main-menu-badge svg {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .modal-menu-item.selected-main-menu {
+        border-left-width: 4px;
     }
     
     .form-actions {
