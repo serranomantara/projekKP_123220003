@@ -2498,6 +2498,37 @@ body.loaded .footer {
     animation: modalSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     max-height: 90vh;
     overflow-y: auto;
+    overflow-x: hidden;
+    /* Smooth scroll */
+    scroll-behavior: smooth;
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(52, 152, 219, 0.3) rgba(52, 152, 219, 0.05);
+}
+
+/* Custom Scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.login-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.login-modal::-webkit-scrollbar-track {
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.login-modal::-webkit-scrollbar-thumb {
+    background: rgba(52, 152, 219, 0.3);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.login-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 152, 219, 0.5);
+}
+
+.login-modal::-webkit-scrollbar-thumb:active {
+    background: rgba(52, 152, 219, 0.7);
 }
 
 @keyframes modalSlideIn {
@@ -2594,6 +2625,8 @@ body.loaded .footer {
     font-size: 0.95rem;
     transition: all 0.3s ease;
     background: #f8f9fa;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input-wrapper .form-input:focus {
@@ -2682,6 +2715,7 @@ body.loaded .footer {
     margin-top: 30px;
     padding-top: 25px;
     border-top: 2px solid #ecf0f1;
+    width: 100%;
 }
 
 .demo-credentials {
@@ -2690,6 +2724,8 @@ body.loaded .footer {
     border-radius: 12px;
     border-left: 4px solid #4CAF50;
     box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .demo-credentials h4 {
@@ -2718,6 +2754,8 @@ body.loaded .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .credential-item strong {
@@ -2763,11 +2801,14 @@ body.loaded .footer {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 8px;
 }
 
@@ -3189,6 +3230,12 @@ body.loaded .footer {
         width: 95%;
         max-width: 95%;
         border-radius: 20px;
+        max-height: 88vh;
+    }
+    
+    /* Scrollbar lebih tipis di tablet */
+    .login-modal::-webkit-scrollbar {
+        width: 6px;
     }
     
     .login-title {
@@ -3239,6 +3286,15 @@ body.loaded .footer {
     .login-modal {
         padding: 30px 20px;
         max-height: 85vh;
+    }
+    
+    /* Scrollbar sangat tipis di mobile */
+    .login-modal::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .login-modal::-webkit-scrollbar-track {
+        margin: 5px 0;
     }
     
     .login-header {
