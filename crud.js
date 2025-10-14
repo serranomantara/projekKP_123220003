@@ -26,49 +26,34 @@ class CRUDManager {
             li.className = 'modal-menu-item';
             li.dataset.itemId = item.id;
             
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'item-content';
-            
-            if (item.icon) {
-                const iconSpan = document.createElement('span');
-                iconSpan.className = 'item-icon';
-                iconSpan.textContent = item.icon;
-                contentDiv.appendChild(iconSpan);
-            }
-            
-            const textDiv = document.createElement('div');
-            textDiv.className = 'item-text';
-            
-            const titleSpan = document.createElement('span');
-            titleSpan.className = 'item-title';
-            titleSpan.textContent = item.title;
-            textDiv.appendChild(titleSpan);
-            
-            if (item.description) {
-                const descSpan = document.createElement('span');
-                descSpan.className = 'item-description';
-                descSpan.textContent = item.description;
-                textDiv.appendChild(descSpan);
-            }
-            
-            contentDiv.appendChild(textDiv);
-            
-            // Add link if URL exists
+            // Add has-link class if item has URL
             if (item.url) {
-                const linkBtn = document.createElement('a');
-                linkBtn.href = item.url;
-                linkBtn.target = '_blank';
-                linkBtn.className = 'item-link-btn';
-                linkBtn.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                `;
-                linkBtn.title = 'Buka Link';
-                contentDiv.appendChild(linkBtn);
+                li.classList.add('has-link');
             }
             
-            li.appendChild(contentDiv);
+            // Create link wrapper
+            const link = document.createElement('a');
+            link.href = item.url || '#';
+            if (item.url) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            } else {
+                link.onclick = (e) => e.preventDefault();
+            }
+            
+            // Add icon
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'menu-item-icon';
+            iconSpan.textContent = item.icon || '📄';
+            link.appendChild(iconSpan);
+            
+            // Add text
+            const textSpan = document.createElement('span');
+            textSpan.className = 'menu-item-text';
+            textSpan.textContent = item.title;
+            link.appendChild(textSpan);
+            
+            li.appendChild(link);
             
             // Add admin controls
             if (auth.isAdmin()) {
