@@ -182,30 +182,32 @@ class AuthSystem {
     }
 
     // Show notification
-    showNotification(message, type = 'info') {
+    showNotification(message, type = 'success') {
         const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
+        notification.className = `notification ${type}`;
+        
+        // Parse message untuk title dan content
+        let title, content;
+        if (message.includes('!')) {
+            [title, content] = message.split('!');
+            title = title + '!';
+        } else {
+            title = message;
+            content = '';
+        }
+        
         notification.innerHTML = `
             <div class="notification-content">
-                <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    ${type === 'success' ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>' :
-                      type === 'error' ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>' :
-                      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
-                </svg>
-                <span>${message}</span>
+                <div class="notification-title">${title}</div>
+                ${content ? `<div class="notification-message">${content.trim()}</div>` : ''}
             </div>
-            <button class="notification-close" onclick="this.parentElement.remove()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
         `;
         
         document.body.appendChild(notification);
-        setTimeout(() => notification.classList.add('show'), 100);
         
         setTimeout(() => {
-            notification.classList.remove('show');
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(400px)';
             setTimeout(() => notification.remove(), 300);
         }, 5000);
     }
