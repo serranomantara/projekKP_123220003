@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Keluar - Sekretariat Desa Cantik</title>
+    <link rel="stylesheet" href="../../pages-style.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <button class="back-btn" onclick="window.history.back()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Kembali
+                </button>
+                <div class="header-title">
+                    <div class="icon">📤</div>
+                    <div>
+                        <h1>Surat Keluar</h1>
+                        <p>Sistem pengelolaan surat keluar Kalurahan Wukirsari</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);">📮</div>
+                    <div class="stat-info">
+                        <h3>38</h3>
+                        <p>Surat Bulan Ini</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">✅</div>
+                    <div class="stat-info">
+                        <h3>36</h3>
+                        <p>Terkirim</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">⏳</div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Proses Kirim</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);">📊</div>
+                    <div class="stat-info">
+                        <h3>485</h3>
+                        <p>Total Arsip</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" placeholder="Cari nomor surat, perihal, atau tujuan...">
+                </div>
+                <div class="filter-buttons">
+                    <select class="filter-select">
+                        <option>Semua Status</option>
+                        <option>Terkirim</option>
+                        <option>Proses Kirim</option>
+                        <option>Draft</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Semua Tipe</option>
+                        <option>Surat Resmi</option>
+                        <option>Undangan</option>
+                        <option>Pemberitahuan</option>
+                        <option>Permohonan</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Bulan Ini</option>
+                        <option>7 Hari Terakhir</option>
+                        <option>30 Hari Terakhir</option>
+                        <option>Semua Periode</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No. Surat</th>
+                            <th>Tanggal Kirim</th>
+                            <th>Perihal</th>
+                            <th>Tujuan</th>
+                            <th>Tipe</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-primary">SK/025/X/2025</span></td>
+                            <td>25 Okt 2025</td>
+                            <td>Undangan Rapat Koordinasi Bulanan</td>
+                            <td>Kepala Dusun Se-Wukirsari</td>
+                            <td>Undangan</td>
+                            <td><span class="status-badge status-success">Terkirim</span></td>
+                            <td><button class="action-btn view-btn">Lihat</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SK/024/X/2025</span></td>
+                            <td>24 Okt 2025</td>
+                            <td>Permohonan Bantuan Dana Posyandu</td>
+                            <td>Dinas Kesehatan Kab. Sleman</td>
+                            <td>Permohonan</td>
+                            <td><span class="status-badge status-success">Terkirim</span></td>
+                            <td><button class="action-btn view-btn">Lihat</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SK/023/X/2025</span></td>
+                            <td>23 Okt 2025</td>
+                            <td>Laporan Kegiatan Gotong Royong</td>
+                            <td>Camat Pakem</td>
+                            <td>Surat Resmi</td>
+                            <td><span class="status-badge status-warning">Proses Kirim</span></td>
+                            <td><button class="action-btn view-btn">Lihat</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SK/022/X/2025</span></td>
+                            <td>22 Okt 2025</td>
+                            <td>Pemberitahuan Pengalihan Lahan</td>
+                            <td>BPN Kabupaten Sleman</td>
+                            <td>Pemberitahuan</td>
+                            <td><span class="status-badge status-success">Terkirim</span></td>
+                            <td><button class="action-btn view-btn">Lihat</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SK/021/X/2025</span></td>
+                            <td>21 Okt 2025</td>
+                            <td>Konfirmasi Kehadiran Acara HUT RI</td>
+                            <td>Kecamatan Pakem</td>
+                            <td>Surat Resmi</td>
+                            <td><span class="status-badge status-warning">Proses Kirim</span></td>
+                            <td><button class="action-btn view-btn">Lihat</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" disabled>← Prev</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">Next →</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>&copy; 2025 Kalurahan Wukirsari - Sistem Informasi Desa Cantik</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple interactive elements
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => alert('Fitur detail surat akan segera tersedia'));
+        });
+    </script>
+</body>
+</html>

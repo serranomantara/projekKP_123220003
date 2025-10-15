@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Masuk - Sekretariat Desa Wukirsari</title>
+    <link rel="stylesheet" href="../../pages-style.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <button class="back-btn" onclick="window.history.back()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Kembali</span>
+                </button>
+                <div class="header-title">
+                    <span class="icon">📨</span>
+                    <div>
+                        <h1>Surat Masuk</h1>
+                        <p>Pengelolaan Surat Masuk Desa</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e3f2fd; color: #1976d2;">📥</div>
+                    <div class="stat-info">
+                        <h3>42</h3>
+                        <p>Surat Masuk Bulan Ini</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f3e5f5; color: #7b1fa2;">✅</div>
+                    <div class="stat-info">
+                        <h3>38</h3>
+                        <p>Sudah Diproses</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fff3e0; color: #f57c00;">⏳</div>
+                    <div class="stat-info">
+                        <h3>4</h3>
+                        <p>Menunggu Tindak Lanjut</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e8f5e9; color: #388e3c;">📊</div>
+                    <div class="stat-info">
+                        <h3>520</h3>
+                        <p>Total Tahun Ini</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" placeholder="Cari surat berdasarkan nomor, pengirim, atau perihal...">
+                </div>
+                <div class="filter-buttons">
+                    <select class="filter-select">
+                        <option>Semua Status</option>
+                        <option>Belum Dibaca</option>
+                        <option>Sudah Dibaca</option>
+                        <option>Diproses</option>
+                        <option>Selesai</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Bulan Ini</option>
+                        <option>Minggu Ini</option>
+                        <option>Hari Ini</option>
+                        <option>Semua</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No. Surat</th>
+                            <th>Tanggal</th>
+                            <th>Pengirim</th>
+                            <th>Perihal</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-primary">SM/001/X/2025</span></td>
+                            <td>14 Okt 2025</td>
+                            <td>Kecamatan Imogiri</td>
+                            <td>Undangan Rapat Koordinasi</td>
+                            <td><span class="status-badge status-success">Selesai</span></td>
+                            <td>
+                                <button class="action-btn view-btn">Detail</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SM/002/X/2025</span></td>
+                            <td>13 Okt 2025</td>
+                            <td>Dinas Kesehatan</td>
+                            <td>Program Posyandu</td>
+                            <td><span class="status-badge status-warning">Diproses</span></td>
+                            <td>
+                                <button class="action-btn view-btn">Detail</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SM/003/X/2025</span></td>
+                            <td>12 Okt 2025</td>
+                            <td>BPD Wukirsari</td>
+                            <td>Konsultasi APBDes 2026</td>
+                            <td><span class="status-badge status-info">Belum Dibaca</span></td>
+                            <td>
+                                <button class="action-btn view-btn">Detail</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SM/004/X/2025</span></td>
+                            <td>11 Okt 2025</td>
+                            <td>Karang Taruna</td>
+                            <td>Permohonan Bantuan Kegiatan</td>
+                            <td><span class="status-badge status-success">Selesai</span></td>
+                            <td>
+                                <button class="action-btn view-btn">Detail</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">SM/005/X/2025</span></td>
+                            <td>10 Okt 2025</td>
+                            <td>PKK Desa</td>
+                            <td>Laporan Kegiatan Bulan September</td>
+                            <td><span class="status-badge status-success">Selesai</span></td>
+                            <td>
+                                <button class="action-btn view-btn">Detail</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" disabled>Previous</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">Next</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>&copy; 2025 Desa Wukirsari. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple interactions
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Fitur detail surat masih dalam pengembangan');
+            });
+        });
+    </script>
+</body>
+</html>

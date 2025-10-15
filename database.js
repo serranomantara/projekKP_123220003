@@ -52,7 +52,7 @@ class Database {
                     id: 1,
                     title: 'Surat Masuk',
                     description: 'Pengelolaan surat masuk dari masyarakat dan instansi',
-                    url: 'https://docs.google.com/spreadsheets/d/1fgwTnO3BAc7NJZTLFUJb_rXPXZRZVTTYDv2-WA3r_K4/edit?gid=0#gid=0',
+                    url: 'pages/sekretariat/surat-masuk.html',
                     icon: '📨',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -61,7 +61,7 @@ class Database {
                     id: 2,
                     title: 'Surat Keluar',
                     description: 'Pengelolaan surat keluar untuk masyarakat dan instansi',
-                    url: 'https://docs.google.com/spreadsheets/d/1PyEK15hUXySAfg71lEdTLbX4X5UvHRTOkXIQv-jGl9Y/edit?gid=0#gid=0',
+                    url: 'pages/sekretariat/surat-keluar.html',
                     icon: '📤',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -70,7 +70,7 @@ class Database {
                     id: 3,
                     title: 'Undangan Masuk',
                     description: 'Daftar undangan yang diterima oleh desa',
-                    url: 'https://docs.google.com/spreadsheets/d/1aEtD4f3aWmnArxQBlhTpR0NYYxrvkxw2rDhaX8uy2kc/edit?gid=0#gid=0',
+                    url: 'pages/sekretariat/undangan-masuk.html',
                     icon: '📬',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -79,7 +79,7 @@ class Database {
                     id: 4,
                     title: 'Undangan Keluar',
                     description: 'Undangan yang dikeluarkan oleh pemerintah desa',
-                    url: 'https://docs.google.com/spreadsheets/d/1_l4veMaYIGuPvOvHMIKW8QPeI8cjqS2PwsRJ_-7VpBI/edit?gid=0#gid=0',
+                    url: 'pages/sekretariat/undangan-keluar.html',
                     icon: '📮',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -88,7 +88,7 @@ class Database {
                     id: 5,
                     title: 'Registrasi Peraturan Kalurahan',
                     description: 'Database peraturan dan regulasi desa',
-                    url: 'https://docs.google.com/spreadsheets/d/1pxaKMXOtvwTjAdqV3Y9_AuXcF095KBzXrhhAwX_VU4k/edit?gid=0#gid=0',
+                    url: 'pages/sekretariat/registrasi-peraturan.html',
                     icon: '📋',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -104,7 +104,7 @@ class Database {
                     id: 1,
                     title: 'Profil Kependudukan Bulanan',
                     description: 'Data statistik kependudukan per bulan',
-                    url: '',
+                    url: 'pages/tatalaksana/profil-kependudukan.html',
                     icon: '📊',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -113,7 +113,7 @@ class Database {
                     id: 2,
                     title: 'Jumlah Layanan',
                     description: 'Total layanan administrasi yang diberikan',
-                    url: '',
+                    url: 'pages/tatalaksana/jumlah-layanan.html',
                     icon: '🔢',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -122,7 +122,7 @@ class Database {
                     id: 3,
                     title: 'Analisis Data Kependudukan',
                     description: 'Analisis mendalam data kependudukan desa',
-                    url: 'https://drive.google.com/file/d/1r66qRwn5jHppVvJcLZaeKnV--YOoJit6/view',
+                    url: 'pages/tatalaksana/analisis-data.html',
                     icon: '📈',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -131,7 +131,7 @@ class Database {
                     id: 4,
                     title: 'Penggunaan Ruangan',
                     description: 'Jadwal dan statistik penggunaan ruangan kantor desa',
-                    url: 'https://docs.google.com/spreadsheets/d/16wlgmE-P1wMRsHhqG2aFGKNcC6VB_CRV1kzpxxYsJCw/edit?gid=0#gid=0',
+                    url: 'pages/tatalaksana/penggunaan-ruangan.html',
                     icon: '🏢',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -147,7 +147,7 @@ class Database {
                     id: 1,
                     title: 'Registrasi Pencarian SPP',
                     description: 'Sistem pencarian dan registrasi SPP',
-                    url: '',
+                    url: 'pages/danarta/registrasi-spp.html',
                     icon: '🔍',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -156,7 +156,7 @@ class Database {
                     id: 2,
                     title: 'Dana Bantuan Sosial',
                     description: 'Informasi bantuan sosial untuk masyarakat',
-                    url: '',
+                    url: 'pages/danarta/dana-bantuan.html',
                     icon: '💰',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -172,7 +172,7 @@ class Database {
                     id: 1,
                     title: 'RPJM Desa',
                     description: 'Rencana Pembangunan Jangka Menengah Desa',
-                    url: '',
+                    url: 'pages/pangripta/rpjm-desa.html',
                     icon: '📝',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -181,7 +181,7 @@ class Database {
                     id: 2,
                     title: 'Profil Kelurahan',
                     description: 'Profil lengkap Kalurahan Wukirsari',
-                    url: '',
+                    url: 'pages/pangripta/profil-kelurahan.html',
                     icon: '🏘️',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -190,7 +190,7 @@ class Database {
                     id: 3,
                     title: 'Publikasi Potensi Kalurahan',
                     description: 'Dokumentasi potensi dan keunggulan desa',
-                    url: 'https://drive.google.com/file/d/1zKQln1sTnIlplpRSos88Zb1K-0LPRG5S/view',
+                    url: 'pages/pangripta/publikasi-potensi.html',
                     icon: '📚',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -206,7 +206,7 @@ class Database {
                     id: 1,
                     title: 'Keamanan Lingkungan',
                     description: 'Program keamanan dan ketertiban lingkungan',
-                    url: '',
+                    url: 'pages/jagabaya/keamanan-lingkungan.html',
                     icon: '🛡️',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -215,7 +215,7 @@ class Database {
                     id: 2,
                     title: 'Siskamling',
                     description: 'Sistem keamanan lingkungan masyarakat',
-                    url: '',
+                    url: 'pages/jagabaya/siskamling.html',
                     icon: '👮',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -224,7 +224,7 @@ class Database {
                     id: 3,
                     title: 'Laporan Kejadian',
                     description: 'Pencatatan dan pelaporan kejadian di desa',
-                    url: '',
+                    url: 'pages/jagabaya/laporan-kejadian.html',
                     icon: '📋',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -240,7 +240,7 @@ class Database {
                     id: 1,
                     title: 'Program Pembangunan Infrastruktur',
                     description: 'Proyek pembangunan infrastruktur desa',
-                    url: '',
+                    url: 'pages/uluulu/program-infrastruktur.html',
                     icon: '🏗️',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -249,7 +249,7 @@ class Database {
                     id: 2,
                     title: 'Pemberdayaan Masyarakat',
                     description: 'Program pemberdayaan ekonomi masyarakat',
-                    url: '',
+                    url: 'pages/uluulu/pemberdayaan-masyarakat.html',
                     icon: '👥',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -258,7 +258,7 @@ class Database {
                     id: 3,
                     title: 'Pelatihan dan Workshop',
                     description: 'Kegiatan pelatihan untuk meningkatkan skill warga',
-                    url: '',
+                    url: 'pages/uluulu/pelatihan-workshop.html',
                     icon: '🎓',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -274,7 +274,7 @@ class Database {
                     id: 1,
                     title: 'Profil Kebudayaan',
                     description: 'Dokumentasi budaya dan tradisi desa',
-                    url: '',
+                    url: 'pages/kamituwa/profil-kebudayaan.html',
                     icon: '🎭',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -283,7 +283,7 @@ class Database {
                     id: 2,
                     title: 'Daftar Kegiatan Budaya',
                     description: 'Jadwal dan dokumentasi kegiatan budaya',
-                    url: '',
+                    url: 'pages/kamituwa/kegiatan-budaya.html',
                     icon: '📅',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -292,7 +292,7 @@ class Database {
                     id: 3,
                     title: 'Bantuan Sosial',
                     description: 'Informasi dan pendaftaran bantuan sosial',
-                    url: '',
+                    url: 'pages/kamituwa/bantuan-sosial.html',
                     icon: '🤝',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -308,7 +308,7 @@ class Database {
                     id: 1,
                     title: 'Alamat Kantor',
                     description: 'Jl. Raya Wukirsari No. 123, Bantul, DIY',
-                    url: '',
+                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
                     icon: '📍',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -317,7 +317,7 @@ class Database {
                     id: 2,
                     title: 'Nomor Telepon',
                     description: '(0274) 123456',
-                    url: '',
+                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
                     icon: '📞',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -326,7 +326,7 @@ class Database {
                     id: 3,
                     title: 'Email Resmi',
                     description: 'info@wukirsari.desa.id',
-                    url: '',
+                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
                     icon: '✉️',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -335,7 +335,7 @@ class Database {
                     id: 4,
                     title: 'Media Sosial',
                     description: '@desawukirsari di Instagram dan Facebook',
-                    url: '',
+                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
                     icon: '📱',
                     created_by: 1,
                     created_at: new Date().toISOString()

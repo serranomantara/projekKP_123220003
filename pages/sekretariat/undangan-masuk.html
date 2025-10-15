@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Masuk - Sekretariat Desa Cantik</title>
+    <link rel="stylesheet" href="../../pages-style.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <button class="back-btn" onclick="window.history.back()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Kembali
+                </button>
+                <div class="header-title">
+                    <div class="icon">📨</div>
+                    <div>
+                        <h1>Undangan Masuk</h1>
+                        <p>Daftar undangan yang diterima Kalurahan Wukirsari</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">✉️</div>
+                    <div class="stat-info">
+                        <h3>15</h3>
+                        <p>Undangan Baru</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">✅</div>
+                    <div class="stat-info">
+                        <h3>28</h3>
+                        <p>Dihadiri</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">⏰</div>
+                    <div class="stat-info">
+                        <h3>6</h3>
+                        <p>Akan Datang</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📋</div>
+                    <div class="stat-info">
+                        <h3>95</h3>
+                        <p>Total Undangan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" placeholder="Cari nomor undangan, perihal, atau pengirim...">
+                </div>
+                <div class="filter-buttons">
+                    <select class="filter-select">
+                        <option>Semua Status</option>
+                        <option>Belum Dibaca</option>
+                        <option>Sudah Dibaca</option>
+                        <option>Dihadiri</option>
+                        <option>Tidak Hadir</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Semua Kategori</option>
+                        <option>Rapat Koordinasi</option>
+                        <option>Sosialisasi</option>
+                        <option>Pelatihan</option>
+                        <option>Upacara</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Bulan Ini</option>
+                        <option>Minggu Ini</option>
+                        <option>Hari Ini</option>
+                        <option>Semua Periode</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No. Undangan</th>
+                            <th>Tanggal Terima</th>
+                            <th>Acara</th>
+                            <th>Pengirim</th>
+                            <th>Waktu Acara</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-primary">UM/032/X/2025</span></td>
+                            <td>25 Okt 2025</td>
+                            <td>Sosialisasi Program Desa Digital</td>
+                            <td>Dinas Kominfo Kab. Sleman</td>
+                            <td>27 Okt 2025, 09:00</td>
+                            <td><span class="status-badge status-info">Belum Dibaca</span></td>
+                            <td><button class="action-btn view-btn">Buka</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">UM/031/X/2025</span></td>
+                            <td>24 Okt 2025</td>
+                            <td>Rapat Koordinasi Tingkat Kecamatan</td>
+                            <td>Camat Pakem</td>
+                            <td>26 Okt 2025, 13:00</td>
+                            <td><span class="status-badge status-success">Dihadiri</span></td>
+                            <td><button class="action-btn view-btn">Buka</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">UM/030/X/2025</span></td>
+                            <td>23 Okt 2025</td>
+                            <td>Pelatihan Pengelolaan Keuangan Desa</td>
+                            <td>BPKP Yogyakarta</td>
+                            <td>28 Okt 2025, 08:00</td>
+                            <td><span class="status-badge status-warning">Belum Dikonfirmasi</span></td>
+                            <td><button class="action-btn view-btn">Buka</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">UM/029/X/2025</span></td>
+                            <td>22 Okt 2025</td>
+                            <td>Upacara Hari Santri Nasional</td>
+                            <td>Pemda Kab. Sleman</td>
+                            <td>22 Okt 2025, 08:00</td>
+                            <td><span class="status-badge status-success">Dihadiri</span></td>
+                            <td><button class="action-btn view-btn">Buka</button></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-primary">UM/028/X/2025</span></td>
+                            <td>21 Okt 2025</td>
+                            <td>Workshop Penguatan Kapasitas Aparat</td>
+                            <td>BPSDM Kab. Sleman</td>
+                            <td>25 Okt 2025, 09:00</td>
+                            <td><span class="status-badge status-success">Dihadiri</span></td>
+                            <td><button class="action-btn view-btn">Buka</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" disabled>← Prev</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">Next →</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>&copy; 2025 Kalurahan Wukirsari - Sistem Informasi Desa Cantik</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => alert('Fitur detail undangan akan segera tersedia'));
+        });
+    </script>
+</body>
+</html>

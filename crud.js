@@ -35,8 +35,18 @@ class CRUDManager {
             const link = document.createElement('a');
             link.href = item.url || '#';
             if (item.url) {
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
+                // Check if URL is internal (starts with 'pages/') or external
+                if (item.url.startsWith('pages/') || item.url.startsWith('./pages/') || item.url.startsWith('../pages/')) {
+                    // Internal link - open in same window
+                    link.target = '_self';
+                } else if (item.url.startsWith('http://') || item.url.startsWith('https://')) {
+                    // External link - open in new tab
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                } else {
+                    // Default for relative paths - open in same window
+                    link.target = '_self';
+                }
             } else {
                 link.onclick = (e) => e.preventDefault();
             }
