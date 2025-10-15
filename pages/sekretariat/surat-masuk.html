@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Masuk - Sekretariat Desa Wukirsari</title>
-    <link rel="stylesheet" href="../../pages-style.css">
+    <link rel="stylesheet" href="../pages-style.css">
 </head>
 <body>
     <div class="page-container">
         <!-- Header -->
         <header class="page-header">
             <div class="header-content">
-                <button class="back-btn" onclick="window.history.back()">
+                <button class="back-btn" onclick="window.location.href='../../index.html'">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
@@ -171,13 +171,7 @@
         </footer>
     </div>
 
-    <script>
-        // Simple interactions
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Fitur detail surat masih dalam pengembangan');
-            });
-        });
-    </script>
+    <!-- Page Manager Script -->
+    <script src="../page-manager.js"></script>
 </body>
 </html>

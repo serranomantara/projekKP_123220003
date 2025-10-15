@@ -2690,6 +2690,39 @@ body.loaded .footer {
     transform: translateY(0);
 }
 
+/* Clear Cache Button (Admin Only) */
+.clear-cache-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+    white-space: nowrap;
+}
+
+.clear-cache-btn .cache-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.clear-cache-btn:hover {
+    background: linear-gradient(135deg, #f5576c, #f093fb);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+}
+
+.clear-cache-btn:active {
+    transform: translateY(0);
+}
+
 .logout-btn {
     background: linear-gradient(135deg, #f44336, #d32f2f);
     box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);

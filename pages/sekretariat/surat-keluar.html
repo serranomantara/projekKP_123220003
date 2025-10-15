@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Keluar - Sekretariat Desa Cantik</title>
-    <link rel="stylesheet" href="../../pages-style.css">
+    <link rel="stylesheet" href="../pages-style.css">
 </head>
 <body>
     <div class="page-container">
         <!-- Header -->
         <header class="page-header">
             <div class="header-content">
-                <button class="back-btn" onclick="window.history.back()">
+                <button class="back-btn" onclick="window.location.href='../../index.html'">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
@@ -172,11 +172,8 @@
         </footer>
     </div>
 
-    <script>
-        // Simple interactive elements
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', () => alert('Fitur detail surat akan segera tersedia'));
-        });
-    </script>
+    
+
+    <script src="../page-manager.js"></script>
 </body>
 </html>

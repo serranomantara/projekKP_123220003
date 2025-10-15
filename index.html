@@ -49,6 +49,13 @@
                 <span class="date" id="currentDate">Thu, Sep 18th, 2025</span>
                 <span class="time" id="currentTime">10:18:46 AM</span>
             </div>
+            <!-- Clear Cache Button (Admin Only) -->
+            <button class="clear-cache-btn admin-only" id="clearCacheBtn" onclick="clearCacheAdmin()" title="Clear Cache & Reload Data">
+                <svg class="cache-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+                <span>Clear Cache</span>
+            </button>
             <button class="login-btn" id="loginBtn">
                 <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
@@ -833,6 +840,37 @@
         
         // Initialize on page load
         updateDateTime();
+
+        // Clear Cache Function for Admin
+        function clearCacheAdmin() {
+            if (!auth.isAdmin()) {
+                alert('Hanya admin yang dapat clear cache!');
+                return;
+            }
+
+            if (confirm('⚠️ Apakah Anda yakin ingin menghapus cache?\n\nIni akan:\n• Menghapus semua data menu lama\n• Reload data menu dengan URL terbaru\n• Tidak menghapus session login Anda')) {
+                try {
+                    // Clear only menu data, keep user session
+                    const keysToRemove = [];
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key.startsWith('menu_')) {
+                            keysToRemove.push(key);
+                        }
+                    }
+                    
+                    keysToRemove.forEach(key => localStorage.removeItem(key));
+                    
+                    // Show success message
+                    alert('✅ Cache berhasil dihapus!\n\nHalaman akan di-reload untuk memuat data terbaru.');
+                    
+                    // Reload page
+                    window.location.reload();
+                } catch (error) {
+                    alert('❌ Error: ' + error.message);
+                }
+            }
+        }
     </script>
 </body>
 </html>
