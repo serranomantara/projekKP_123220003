@@ -121,9 +121,6 @@ class PageManager {
             pageData.forEach(item => {
                 tbody.appendChild(item.element.cloneNode(true));
             });
-            
-            // Re-attach event listeners to action buttons
-            this.attachActionListeners();
         }
     }
 
@@ -204,14 +201,6 @@ class PageManager {
         if (table) {
             table.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }
-
-    attachActionListeners() {
-        document.querySelectorAll('.view-btn, .action-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('Fitur detail masih dalam pengembangan');
-            });
-        });
     }
 }
 
