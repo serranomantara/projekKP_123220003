@@ -65,10 +65,10 @@ class CRUDManager {
             
             li.appendChild(link);
             
-            // Add admin controls
-            if (auth.isAdmin()) {
+            // Add CRUD controls for both admin and user
+            if (auth.isLoggedIn()) {
                 const actionsDiv = document.createElement('div');
-                actionsDiv.className = 'item-actions admin-only';
+                actionsDiv.className = 'item-actions';
                 
                 const editBtn = document.createElement('button');
                 editBtn.className = 'item-edit-btn';

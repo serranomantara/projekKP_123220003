@@ -3941,6 +3941,18 @@ textarea.form-input {
     box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
 }
 
+.user-menu-btn.monitor-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+}
+
+.user-menu-btn.monitor-btn:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateX(5px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
 .user-menu-btn svg {
     width: 20px;
     height: 20px;

@@ -5,13 +5,13 @@
 //    - Username: admin
 //    - Password: admin123
 //    - Role: admin
-//    - Access: Full CRUD operations
+//    - Access: Full CRUD + Monitor Users
 //
-// 2. User Account:
-//    - Username: user
+// 2. User Accounts (Multiple):
+//    - Username: user1-5
 //    - Password: user123
 //    - Role: user
-//    - Access: Read-only
+//    - Access: Full CRUD operations
 //
 class Database {
     constructor() {
@@ -20,7 +20,7 @@ class Database {
 
     // Inisialisasi database dengan data dummy
     initDatabase() {
-        // Users
+        // Users - Multiple users dengan role berbeda
         if (!localStorage.getItem('users')) {
             const defaultUsers = [
                 {
@@ -34,15 +34,56 @@ class Database {
                 },
                 {
                     id: 2,
-                    username: 'user',
+                    username: 'user1',
                     password: 'user123',
                     role: 'user',
-                    nama: 'Petugas Desa',
-                    email: 'user@wukirsari.desa.id',
+                    nama: 'Petugas Sekretariat',
+                    email: 'sekretariat@wukirsari.desa.id',
+                    created_at: new Date().toISOString()
+                },
+                {
+                    id: 3,
+                    username: 'user2',
+                    password: 'user123',
+                    role: 'user',
+                    nama: 'Petugas Kamituwa',
+                    email: 'kamituwa@wukirsari.desa.id',
+                    created_at: new Date().toISOString()
+                },
+                {
+                    id: 4,
+                    username: 'user3',
+                    password: 'user123',
+                    role: 'user',
+                    nama: 'Petugas Ulu-Ulu',
+                    email: 'uluulu@wukirsari.desa.id',
+                    created_at: new Date().toISOString()
+                },
+                {
+                    id: 5,
+                    username: 'user4',
+                    password: 'user123',
+                    role: 'user',
+                    nama: 'Petugas Danarta',
+                    email: 'danarta@wukirsari.desa.id',
+                    created_at: new Date().toISOString()
+                },
+                {
+                    id: 6,
+                    username: 'user5',
+                    password: 'user123',
+                    role: 'user',
+                    nama: 'Petugas Jagabaya',
+                    email: 'jagabaya@wukirsari.desa.id',
                     created_at: new Date().toISOString()
                 }
             ];
             localStorage.setItem('users', JSON.stringify(defaultUsers));
+        }
+
+        // Active Sessions - Track online users
+        if (!localStorage.getItem('activeSessions')) {
+            localStorage.setItem('activeSessions', JSON.stringify([]));
         }
 
         // Menu Content - Sekretariat

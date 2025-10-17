@@ -28,7 +28,10 @@ class AuthSystem {
         console.log('Authentication result:', user ? 'Success' : 'Failed');
         
         if (user) {
-            db.setCurrentUser(user);
+            // Use session manager to track login
+            const session = sessionManager.login(user);
+            console.log('Session created:', session);
+            
             this.updateUI(user);
             this.showNotification(`Selamat datang, ${user.nama}!`, 'success');
             this.closeLoginModal();
@@ -41,6 +44,8 @@ class AuthSystem {
 
     // Logout function
     logout() {
+        // Remove session before logout
+        sessionManager.logout();
         db.logout();
         this.updateUI(null);
         this.showNotification('Anda telah logout', 'info');
@@ -158,6 +163,14 @@ class AuthSystem {
                         <span class="user-role ${user.role}">${user.role === 'admin' ? 'Administrator' : 'User'}</span>
                     </div>
                     <div class="user-menu-actions">
+                        ${user.role === 'admin' ? `
+                        <button class="user-menu-btn monitor-btn" onclick="window.location.href='monitor-users.html'; auth.closeUserMenu();">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                            Monitor User Online
+                        </button>
+                        ` : ''}
                         <button class="user-menu-btn logout-btn" onclick="auth.logout(); auth.closeUserMenu();">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
