@@ -349,7 +349,7 @@ class Database {
                     id: 1,
                     title: 'Alamat Kantor',
                     description: 'Jl. Raya Wukirsari No. 123, Bantul, DIY',
-                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
+                    url: 'https://maps.app.goo.gl/vFRckEAkjArPxDiq6',
                     icon: '📍',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -358,7 +358,7 @@ class Database {
                     id: 2,
                     title: 'Nomor Telepon',
                     description: '(0274) 123456',
-                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
+                    url: 'https://maps.app.goo.gl/vFRckEAkjArPxDiq6',
                     icon: '📞',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -367,7 +367,7 @@ class Database {
                     id: 3,
                     title: 'Email Resmi',
                     description: 'info@wukirsari.desa.id',
-                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
+                    url: 'https://maps.app.goo.gl/vFRckEAkjArPxDiq6',
                     icon: '✉️',
                     created_by: 1,
                     created_at: new Date().toISOString()
@@ -376,7 +376,7 @@ class Database {
                     id: 4,
                     title: 'Media Sosial',
                     description: '@desawukirsari di Instagram dan Facebook',
-                    url: 'https://maps.app.goo.gl/U6667dGAosFB7qJT9',
+                    url: 'https://maps.app.goo.gl/vFRckEAkjArPxDiq6',
                     icon: '📱',
                     created_by: 1,
                     created_at: new Date().toISOString()
