@@ -1,0 +1,158 @@
+# Apache Configuration for Website Desa Wukirsari
+
+# Enable Rewrite Engine
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /projek_rev2/
+    
+    # Redirect HTTP to HTTPS (uncomment jika sudah ada SSL)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Remove .html extension
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+    
+    # Remove .php extension
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule ^(.*)$ $1.php [L]
+</IfModule>
+
+# Security Headers
+
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # CORS Headers (adjust as needed)
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+    
+    # Remove Server Header (security)
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# PHP Security Settings
+
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log /var/log/php_errors.log
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_value memory_limit 256M
+</IfModule>
+
+# Gzip Compression
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser Caching
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Data
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType text/xml "access plus 0 seconds"
+</IfModule>
+
+# Protect sensitive files
+
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+<FilesMatch "(^|/)\.(htaccess|htpasswd|ini|log|sh|inc|bak|sql)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Protect database config
+
+<Files "database.php">
+Order allow,deny
+Deny from all
+</Files>
+
+# Protect SQL files
+
+<Files "\*.sql">
+Order allow,deny
+Deny from all
+</Files>
+
+# Custom Error Pages
+
+ErrorDocument 400 /projek_rev2/errors/400.html
+ErrorDocument 401 /projek_rev2/errors/401.html
+ErrorDocument 403 /projek_rev2/errors/403.html
+ErrorDocument 404 /projek_rev2/errors/404.html
+ErrorDocument 500 /projek_rev2/errors/500.html
+
+# Directory Index
+
+DirectoryIndex index.html index.php
+
+# Disable Directory Browsing
+
+Options -Indexes
+
+# Follow Symbolic Links
+
+Options +FollowSymLinks
+
+# Default Charset
+
+AddDefaultCharset UTF-8
+
+# Force UTF-8
+
+AddCharset UTF-8 .html .css .js .xml .json .php
+
+# MIME Types
+
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
+
+# Prevent access to backup files
+
+<FilesMatch "\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp|old|orig)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
